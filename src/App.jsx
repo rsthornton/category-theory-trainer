@@ -9,6 +9,7 @@ import SpotError from './components/SpotError'
 import FunctorMatch from './components/FunctorMatch'
 import FreeConstruction from './components/FreeConstruction'
 import DiagramRenderer from './components/DiagramRenderer'
+import HelpModal from './components/HelpModal'
 
 const CHALLENGE_TYPES = [
   { key: 'classify', label: 'Classify', desc: 'Sort words into objects and morphisms', component: Classify },
@@ -56,6 +57,7 @@ export default function App() {
   const [streak, setStreak] = useState(0)
   const [showDiagram, setShowDiagram] = useState(null)
   const [shuffledChallenges, setShuffledChallenges] = useState({})
+  const [showHelp, setShowHelp] = useState(false)
 
   // Derive completed from history so existing rendering code is unchanged
   const completed = Object.fromEntries(
@@ -68,8 +70,15 @@ export default function App() {
       const saved = JSON.parse(localStorage.getItem('ct-trainer-v1') || '{}');
       if (saved.history) setHistory(saved.history);
       if (typeof saved.streak === 'number') setStreak(saved.streak);
+      if (!saved.helpSeen) setShowHelp(true);
     } catch (_) {}
   }, []);
+
+  const handleCloseHelp = () => {
+    setShowHelp(false)
+    const existing = JSON.parse(localStorage.getItem('ct-trainer-v1') || '{}')
+    localStorage.setItem('ct-trainer-v1', JSON.stringify({ ...existing, helpSeen: true }))
+  }
 
   const getChallenges = useCallback((typeKey) => {
     return shuffledChallenges[typeKey] || []
@@ -97,7 +106,8 @@ export default function App() {
       };
       setStreak(s => {
         const newStreak = correct ? s + 1 : 0;
-        localStorage.setItem('ct-trainer-v1', JSON.stringify({ history: next, streak: newStreak }));
+        const existing = JSON.parse(localStorage.getItem('ct-trainer-v1') || '{}');
+        localStorage.setItem('ct-trainer-v1', JSON.stringify({ ...existing, history: next, streak: newStreak }));
         return newStreak;
       });
       return next;
@@ -142,6 +152,7 @@ export default function App() {
     return (
       <div className="app">
         <header className="app-header">
+          <button className="help-btn" onClick={() => setShowHelp(true)} title="Help & Definitions">?</button>
           <h1>Category Theory Trainer</h1>
           <p className="subtitle">Build intuition through practice. Objects, morphisms, composition, functors.</p>
           {totalCompleted > 0 && (
@@ -179,6 +190,7 @@ export default function App() {
             )
           })}
         </div>
+      {showHelp && <HelpModal onClose={handleCloseHelp} />}
       </div>
     )
   }
@@ -206,7 +218,10 @@ export default function App() {
   return (
     <div className="app">
       <div className="challenge-header">
-        <button className="back-btn" onClick={handleBack}>← All Challenges</button>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+          <button className="back-btn" style={{ marginBottom: 0 }} onClick={handleBack}>← All Challenges</button>
+          <button className="help-btn" onClick={() => setShowHelp(true)} title="Help & Definitions">?</button>
+        </div>
         <div className="challenge-meta">
           <h2>{typeInfo.label}</h2>
           <span className="challenge-counter">{challengeIndex + 1} / {pool.length}</span>
@@ -237,6 +252,7 @@ export default function App() {
         </button>
         <button onClick={() => handleNext(pool)} disabled={challengeIndex >= pool.length - 1} className="nav-btn">Next →</button>
       </div>
+      {showHelp && <HelpModal onClose={handleCloseHelp} />}
     </div>
   )
 }
