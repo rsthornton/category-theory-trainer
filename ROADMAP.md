@@ -1,17 +1,35 @@
 # Category Theory Trainer — Roadmap
 
-## Current State
+## Current State (2026-02-23)
 
-All 8 challenge types are fully playable with SVG commutative diagrams rendered
-after each answer. Diagrams follow tikz-cd conventions: stealth arrowheads,
-geometric layouts (commutative triangles for composition), no flowchart boxes.
-- localStorage persistence (history, streak, accuracy) and spaced-repetition weighting are now implemented.
-- Halcyonic visual overhaul: animated ocean/teal gradient background, Fraunces display font, glassmorphism cards, gradient buttons, ocean design tokens throughout.
-- Help modal fully rewritten in plain English; logic domain vocabulary added (conjunction, modus ponens, contrapositive, inference rule, etc.).
+All 8 challenge types fully playable. Deployed to Vercel via GitHub auto-deploy.
+
+**Core features:**
+- SVG commutative diagrams after each answer (tikz-cd conventions)
+- localStorage persistence (`ct-trainer-v1`): history, streak, helpSeen, manualUnlocks
+- Spaced repetition (weightedShuffle, 5 priority tiers)
+- Keyboard shortcuts: 1–4 select options, Enter confirms
+- "Mark as known" button, streak badge (≥2), reset progress button
+
+**Visual design (Halcyonic theme):**
+- Animated ocean/teal pastel gradient background (20s loop)
+- Fraunces 800 display headings with gradient clip-text
+- Glassmorphism cards + ocean/teal design token system
+
+**Help modal:**
+- Tutorial + Definitions tabs; all definitions in plain English with everyday examples
+- Logic vocabulary section: proposition, conjunction, modus ponens, contrapositive, inference rule
+
+**Tier unlock system (shipped 2026-02-23):**
+- Foundation (classify, validate): always open
+- Core (compose, isomorphism, spot_error): locked until 5 Foundation correct OR 4/5 test-out
+- Advanced (category_switch, functor_match, free_construction): locked until 5 Core correct OR 4/5 test-out
+- Soft gate: locked cards dimmed, still clickable, locked-banner inside with "Test out →"
+- Test-out: 5-challenge sprint, pip progress display, result screen
 
 ---
 
-## NEXT: Tier Unlock System (Option C — approved)
+## ~~DONE: Tier Unlock System (Option C)~~
 
 ### Rationale
 
@@ -193,3 +211,45 @@ The sync function would accept the same `{ history, streak }` shape that
 localStorage already uses, storing it per-user. On mount, fetch from the API
 instead of (or in addition to) localStorage, merging the same way as the
 import flow above.
+
+---
+
+## Session Log
+
+### 2026-02-23
+
+**Halcyonic visual overhaul**
+- Animated ocean/teal pastel gradient background (`gradient-shift`, 20s loop, `@property --gradient-angle`)
+- Fraunces 800 added to Google Fonts; applied to `h1` (gradient clip-text) and `h2` challenge heading
+- Glassmorphism on all cards: `rgba(255,255,255,0.72)` + `backdrop-filter: blur(8px)`
+- Ocean/teal CSS design token system (`--ocean-50` through `--ocean-900`, `--teal-*`) in `:root`
+- `.submit-btn` / modal footer button: ocean→teal gradient + glow shadow
+- `.nav-btn`: ocean-outlined (border + text use ocean tokens)
+- `.option-btn.selected` / `.mapping-btn.selected`: ocean border + focus ring
+- `.type-card:hover`: card-lift (`translateY(-2px)`) + ocean drop shadow
+- Streak badge: ocean/teal gradient; progress dots: teal (done) / ocean (active)
+- Modal tabs active state: ocean-600 text, ocean-500 underline
+- Object nodes: ocean-50 bg, ocean-200 border; arrows: ocean-200 color
+- Feedback boxes: green/red semantics preserved; added `backdrop-filter: blur(4px)`
+
+**Help modal — Definitions rewrite**
+- Logic domain vocabulary section added: proposition, conjunction, conjunction introduction/elimination, modus ponens, contrapositive, inference rule — each with CT interpretation (object vs morphism vs isomorphism)
+- All definitions rewritten: plain English first, jargon explained, everyday examples throughout
+- Column headers changed from "Definition/Example" to "What it means / Everyday example"
+- Category laws: associativity and unitality now lead with plain English before symbols
+- Derived concepts: functor gets "structure-preserving dictionary between worlds"; natural transformation gets French/Italian cuisine analogy
+
+**Tier unlock system**
+- Foundation (classify, validate): always open
+- Core (compose, isomorphism, spot_error): locked; unlocks at 5 Foundation correct OR 4/5 test-out
+- Advanced (category_switch, functor_match, free_construction): locked; unlocks at 5 Core correct OR 4/5 test-out
+- Organic unlock: `computeOrganicUnlocks(history)` recomputed every render — never stale
+- Manual unlock: `manualUnlocks` Set persisted as `manualUnlocks: string[]` in localStorage
+- `testOutRef` pattern: ref synced with testOut state so stable `handleComplete` callback can read it without dependency
+- `pendingResult` bridges answer submission → test-out scoring (set by `handleComplete`, consumed by `handleTestOutNext`)
+- Main menu: tier section headings, progress hint, "Test out →" pill button on locked sections
+- Locked cards: opacity 0.45, hover softened, no lift
+- Test-out challenge view: pip row (pending/active/correct/incorrect), counter, "Continue →" / "See results →"
+- Test-out result screen: Fraunces verdict (✓ Passed / ✗ Not quite), score, pip breakdown, CTA
+- Soft gate: locked-banner inside locked challenge views with inline "Test out →" escape
+- Reset progress now also resets `manualUnlocks` to `['foundation']`

@@ -12,7 +12,7 @@ Currently ~115 challenges. Built with React + Vite, zero external UI dependencie
 
 ```
 src/
-├── App.jsx                    # Shell: routing, all state, spaced repetition
+├── App.jsx                    # Shell: routing, all state, spaced repetition, tier system
 ├── data/challenges.js         # THE content database — add challenges here
 ├── components/
 │   ├── Classify.jsx           # Sort words into objects vs morphisms
@@ -23,7 +23,8 @@ src/
 │   ├── SpotError.jsx          # Find the broken arrow
 │   ├── FunctorMatch.jsx       # Map objects/arrows between categories
 │   ├── FreeConstruction.jsx   # Build relationships from scratch (multi-step)
-│   └── DiagramRenderer.jsx    # SVG commutative diagram renderer
+│   ├── DiagramRenderer.jsx    # SVG commutative diagram renderer
+│   └── HelpModal.jsx          # Tutorial + Definitions modal (tabbed)
 └── styles/app.css             # All styles (no CSS modules)
 ```
 
@@ -33,7 +34,51 @@ src/
 - `streak`: number, persisted to localStorage
 - `completed`: derived from `history` each render (not state) — preserves compatibility
 - `shuffledChallenges`: `{ [typeKey]: challenge[] }`, recomputed on each type entry
-- localStorage key: `"ct-trainer-v1"` — schema: `{ history, streak }`
+- `manualUnlocks`: `Set<string>` — tiers unlocked via test-out, persisted to localStorage
+- `testOut`: test-out session state or `null` (see Tier System below)
+- `testOutRef`: ref kept in sync with `testOut` so `handleComplete` can read it without stale closure
+- localStorage key: `"ct-trainer-v1"` — schema: `{ history, streak, helpSeen, manualUnlocks: string[] }`
+
+## Tier System
+
+Challenge types are grouped into three tiers. Core and Advanced start locked.
+
+| Tier | Types | Unlocks when |
+|------|-------|-------------|
+| Foundation | classify, validate | Always open |
+| Core | compose, isomorphism, spot_error | 5 correct in Foundation, OR pass test-out |
+| Advanced | category_switch, functor_match, free_construction | 5 correct in Core, OR pass test-out |
+
+**Organic unlock**: `computeOrganicUnlocks(history)` counts `lastCorrect === true` entries
+per tier. Recomputed every render — no stale state possible.
+
+**Manual unlock (test-out)**: stored in `manualUnlocks` Set, persisted as `manualUnlocks: string[]`
+in localStorage. Combined: `unlockedTiers = new Set([...organicUnlocks, ...manualUnlocks])`.
+
+**Soft gate**: locked cards are dimmed (opacity 0.45) but still clickable. Entering a locked
+type shows a `locked-banner` with an inline "Test out →" escape hatch.
+
+**Test-out flow**:
+```
+testOut shape: {
+  tier: string,
+  challenges: Challenge[5],
+  index: number,         // 0–4, current challenge
+  correct: number,       // running score
+  results: bool[],       // per-answer results for pip display
+  pendingResult: bool|null,  // set by handleComplete, consumed by handleTestOutNext
+  done: bool,
+  passed: bool,
+}
+```
+- `handleStartTestOut(tier, e?)` — builds pool, sets testOut, clears activeType
+- `handleTestOutNext()` — scores pendingResult, advances index or sets done=true
+- `handleTestOutFinish(passed)` — on pass: adds tier to manualUnlocks + localStorage; clears testOut
+
+**Routing order**:
+1. `testOut?.done` → test-out result screen
+2. `!activeType && !testOut` → main menu
+3. else → challenge view (`inTestOut = testOut !== null`)
 
 ## Spaced Repetition Tiers (weightedShuffle)
 
@@ -44,6 +89,15 @@ src/
 | 2 | Last correct, accuracy < 50% | Medium-high |
 | 3 | Seen, last correct, not mastered | Medium |
 | 4 | ≥3 attempts, accuracy ≥ 80% | Lowest (mastered) |
+
+## Visual Design
+
+- **Fonts**: Fraunces 800 (headings, gradient clip-text), Libre Baskerville (body), IBM Plex Mono (labels/code)
+- **Background**: animated ocean/teal gradient (`gradient-shift` keyframe, 20s loop)
+- **Cards**: glassmorphism — `rgba(255,255,255,0.72)` + `backdrop-filter: blur(8px)`
+- **Buttons**: `.submit-btn` is ocean→teal gradient; `.nav-btn` is ocean-outlined
+- **Design tokens**: `--ocean-*` and `--teal-*` CSS custom properties in `:root`
+- **Locked cards**: `opacity: 0.45`, hover softened, no lift/shadow
 
 ## Challenge Schema
 
@@ -71,7 +125,7 @@ Every challenge: `{ id, type, domain, difficulty (1-3) }`
 - Prefixes: `cl-` classify, `va-` validate, `co-` compose, `iso-` isomorphism, `cs-` category_switch, `se-` spot_error, `fu-` functor_match, `fc-` free_construction
 - Domains: `cooking`, `logic`, `family`, `mixed`
 
-## Content Counts (as of last session)
+## Content Counts (as of 2026-02-23)
 
 | Type | Count |
 |------|-------|
@@ -121,3 +175,7 @@ In Validate, Compose, IsomorphismCheck, FreeConstruction, SpotError:
 - `completed` is derived (not state) — changes to `history` automatically reflect everywhere
 - Component `key={current.id}` ensures full remount on challenge change — component state never leaks between challenges
 - `useEffect` in challenge components uses `[submitted, answer/selected]` deps to avoid stale closure on Enter key handler
+- `testOutRef` is a ref kept in sync with `testOut` via `useEffect` — allows `handleComplete` (stable `useCallback`) to read current testOut value without adding it as a dependency
+- `pendingResult` in testOut is set by `handleComplete` and consumed by `handleTestOutNext` — this is the bridge between answer submission and test-out scoring
+- `handleBack` clears both `activeType` AND `testOut` — always returns to main menu cleanly
+- `handleReset` resets `manualUnlocks` to `new Set(['foundation'])` alongside history/streak
