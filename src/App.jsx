@@ -138,6 +138,12 @@ export default function App() {
   }, [shuffledChallenges])
 
   const handleSelectType = (typeKey) => {
+    const tier = getTierForType(typeKey)
+if (!unlockedTiers.has(tier)) {
+      // Hard gate: jump straight to test-out for this tier
+      handleStartTestOut(tier)
+      return
+    }
     const shuffled = weightedShuffle(challenges[typeKey] || [], history)
     setShuffledChallenges(prev => ({ ...prev, [typeKey]: shuffled }))
     setActiveType(typeKey)
@@ -454,14 +460,6 @@ export default function App() {
               <button className="back-btn" style={{ marginBottom: 0 }} onClick={handleBack}>← All Challenges</button>
               <button className="help-btn" onClick={() => setShowHelp(true)} title="Help & Definitions">?</button>
             </div>
-            {challengeIsLocked && (
-              <div className="locked-banner">
-                <span>🔒 <strong>{TIER_LABELS[currentTier]}</strong> tier — complete {TIER_LABELS[TIER_PREREQ[currentTier]]} challenges to unlock</span>
-                <button className="locked-banner-btn" onClick={(e) => handleStartTestOut(currentTier, e)}>
-                  Test out →
-                </button>
-              </div>
-            )}
           </>
         )}
         <div className="challenge-meta">
@@ -473,12 +471,26 @@ export default function App() {
       </div>
 
       <div className="challenge-body">
-        <ChallengeComponent
-          key={current.id}
-          challenge={current}
-          onComplete={handleComplete}
-          onShowDiagram={setShowDiagram}
-        />
+        {challengeIsLocked ? (
+          <div className="locked-gate">
+            <div className="locked-gate-icon">🔒</div>
+            <h3>{TIER_LABELS[currentTier]} tier is locked</h3>
+            <p>
+              Complete 5 <strong>{TIER_LABELS[TIER_PREREQ[currentTier]]}</strong> challenges to unlock,
+              or demonstrate you already know this material.
+            </p>
+            <button className="submit-btn" onClick={(e) => handleStartTestOut(currentTier, e)}>
+              Take the test-out →
+            </button>
+          </div>
+        ) : (
+          <ChallengeComponent
+            key={current.id}
+            challenge={current}
+            onComplete={handleComplete}
+            onShowDiagram={setShowDiagram}
+          />
+        )}
       </div>
 
       {showDiagram && (
@@ -487,7 +499,7 @@ export default function App() {
         </div>
       )}
 
-      <div className="challenge-nav">
+      {!challengeIsLocked && <div className="challenge-nav">
         {inTestOut ? (
           <>
             <span />
@@ -508,7 +520,7 @@ export default function App() {
             <button onClick={() => handleNext(pool)} disabled={challengeIndex >= pool.length - 1} className="nav-btn">Next →</button>
           </>
         )}
-      </div>
+      </div>}
 
       {showHelp && <HelpModal onClose={handleCloseHelp} />}
     </div>

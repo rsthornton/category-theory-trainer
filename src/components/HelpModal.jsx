@@ -87,6 +87,21 @@ function TutorialTab() {
           </tbody>
         </table>
       </div>
+
+      <div className="help-section">
+        <h3>Domains</h3>
+        <table className="type-ref-table">
+          <tbody>
+            <tr><td>🍳</td><td>Cooking</td><td>Physical kitchen transformations — irreversible by default</td></tr>
+            <tr><td>💡</td><td>Logic</td><td>Propositions, inference rules, proof as morphism</td></tr>
+            <tr><td>🌿</td><td>Family / Biology</td><td>Kinship and biological relationships</td></tr>
+            <tr><td>🏛</td><td>Political Economy</td><td>Institutions, governance, policy processes, Hayekian feedback cycles</td></tr>
+            <tr><td>🔐</td><td>Cryptoeconomics</td><td>Blockchain states, cryptographic operations, consensus mechanisms</td></tr>
+            <tr><td>🔁</td><td>Systems Science</td><td>Hierarchical composition, feedback loops, cross-scale structural patterns</td></tr>
+            <tr><td>🧠</td><td>Neuromorphics</td><td>Neural computation, substrate-independence, learning as morphism</td></tr>
+          </tbody>
+        </table>
+      </div>
     </>
   )
 }

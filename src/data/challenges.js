@@ -328,6 +328,141 @@ const challenges = {
       ],
       explanation: "People and groups are objects. 'Is the parent of,' 'shares DNA with,' 'biological descent,' and 'kinship' are all morphisms — directed relationships connecting objects. Tricky: 'kinship' sounds like a thing, but here it refers to the relational structure (a morphism class), not a family member (an object)."
     },
+
+    // --- POLITICAL ECONOMY ---
+    {
+      id: "cl-pe-01",
+      type: "classify",
+      domain: "political_economy",
+      difficulty: 1,
+      prompt: "Sort these into objects (institutional states) and morphisms (political operations).",
+      words: [
+        { word: "Senate", kind: "object" },
+        { word: "Legislate", kind: "morphism" },
+        { word: "Policy", kind: "object" },
+        { word: "Veto", kind: "morphism" },
+        { word: "Budget", kind: "object" },
+        { word: "Appropriate", kind: "morphism" },
+      ],
+      explanation: "The Senate, a policy document, and a budget are all objects — states of the political system at a moment in time. Legislating, vetoing, and appropriating are morphisms — operations that transform those states into new ones. 'Tax' is a useful boundary case: the tax law is an object; the act of taxing is a morphism."
+    },
+    {
+      id: "cl-pe-02",
+      type: "classify",
+      domain: "political_economy",
+      difficulty: 1,
+      prompt: "Sort these into objects (political states) and morphisms (political processes).",
+      words: [
+        { word: "Electorate", kind: "object" },
+        { word: "Election", kind: "morphism" },
+        { word: "Mandate", kind: "object" },
+        { word: "Govern", kind: "morphism" },
+        { word: "Constitution", kind: "object" },
+        { word: "Ratify", kind: "morphism" },
+      ],
+      explanation: "The electorate, a mandate, and the constitution are objects — stable states in the political system. Elections, governing, and ratification are morphisms — directed processes that convert one institutional state into another."
+    },
+    {
+      id: "cl-pe-03",
+      type: "classify",
+      domain: "political_economy",
+      difficulty: 2,
+      prompt: "Sort these elements from Hayek's process cycle into objects and morphisms. Watch the boundary cases.",
+      words: [
+        { word: "Entrepreneurial plan", kind: "object" },
+        { word: "Judge and select among plans", kind: "morphism" },
+        { word: "Market price", kind: "object" },
+        { word: "Adapt production to price signal", kind: "morphism" },
+        { word: "Expected future price", kind: "object" },
+        { word: "Update expectation from feedback", kind: "morphism" },
+      ],
+      explanation: "Plans, prices, and expectations are objects — states that actors hold or observe at a moment in time. Judging plans, adapting production, and updating expectations are morphisms — the actual processes that drive the Hayekian cycle. Boundary: 'Feedback' can be an object (the signal value itself) or a morphism (the act of feeding information back) — context determines which."
+    },
+
+    // --- CRYPTOECONOMICS ---
+    {
+      id: "cl-ce-01",
+      type: "classify",
+      domain: "cryptoeconomics",
+      difficulty: 1,
+      prompt: "Sort these blockchain terms into objects (states) and morphisms (operations).",
+      words: [
+        { word: "Wallet address", kind: "object" },
+        { word: "Sign", kind: "morphism" },
+        { word: "Block", kind: "object" },
+        { word: "Broadcast", kind: "morphism" },
+        { word: "Transaction", kind: "object" },
+        { word: "Validate", kind: "morphism" },
+      ],
+      explanation: "A wallet address, a block, and a transaction are objects — things that exist in the blockchain state at a given moment. Signing, broadcasting, and validating are morphisms — operations that transform those states. Boundary case: 'Signature' is an object (the resulting value) while 'sign' is the morphism (the act of signing)."
+    },
+    {
+      id: "cl-ce-02",
+      type: "classify",
+      domain: "cryptoeconomics",
+      difficulty: 2,
+      prompt: "Sort these smart contract terms. Some are tricky boundary cases.",
+      words: [
+        { word: "Deployed bytecode", kind: "object" },
+        { word: "Execution", kind: "morphism" },
+        { word: "Storage slot", kind: "object" },
+        { word: "State update", kind: "morphism" },
+        { word: "Gas fee", kind: "object" },
+        { word: "Consume gas", kind: "morphism" },
+      ],
+      explanation: "Deployed bytecode, storage slots, and gas fees are objects — states of the chain. Execution, state update, and consuming gas are morphisms — operations that advance the computation. The tricky one: 'contract call' can be an object (the call data) or a morphism (the act of calling) — here 'execution' captures the morphism."
+    },
+
+    // --- SYSTEMS SCIENCE ---
+    {
+      id: "cl-ss-01",
+      type: "classify",
+      domain: "systems_science",
+      difficulty: 1,
+      prompt: "Sort these systems science terms into objects (system states) and morphisms (system operations).",
+      words: [
+        { word: "Cell", kind: "object" },
+        { word: "Regulate", kind: "morphism" },
+        { word: "Ecosystem", kind: "object" },
+        { word: "Constrain", kind: "morphism" },
+        { word: "Steady state", kind: "object" },
+        { word: "Adapt", kind: "morphism" },
+      ],
+      explanation: "A cell, an ecosystem, and a steady state are objects — stable configurations of a system. Regulating, constraining, and adapting are morphisms — directed processes that transform one system state into another. Boundary: 'Feedback' is an object (the signal value) when measured, but a morphism (the act of feeding back) when describing the loop."
+    },
+    {
+      id: "cl-ss-02",
+      type: "classify",
+      domain: "systems_science",
+      difficulty: 2,
+      prompt: "Sort these elements from Bunge's 8-tuple system model into objects and morphisms.",
+      words: [
+        { word: "Component", kind: "object" },
+        { word: "Relation / connection", kind: "morphism" },
+        { word: "Boundary", kind: "object" },
+        { word: "Transformation function", kind: "morphism" },
+        { word: "History", kind: "object" },
+      ],
+      explanation: "In Bunge's formal system model, components, boundaries, and history are objects — things the system has. Relations/connections and transformation functions are morphisms — the ways components interact and the system evolves. This is a precise ontological boundary: nouns vs. verbs, states vs. processes."
+    },
+
+    // --- NEUROMORPHICS ---
+    {
+      id: "cl-nm-01",
+      type: "classify",
+      domain: "neuromorphics",
+      difficulty: 1,
+      prompt: "Sort these neuroscience terms into objects (neural states) and morphisms (neural operations).",
+      words: [
+        { word: "Neuron", kind: "object" },
+        { word: "Fire", kind: "morphism" },
+        { word: "Synapse", kind: "object" },
+        { word: "Potentiate", kind: "morphism" },
+        { word: "Action potential", kind: "object" },
+        { word: "Inhibit", kind: "morphism" },
+      ],
+      explanation: "A neuron, a synapse, and an action potential are objects — components or states of the neural system. Firing, potentiating, and inhibiting are morphisms — the operations that transform neural states. Boundary: 'Spike' can be an object (the discrete firing event, a datum in the spike train) or a morphism (the act of spiking) — context determines which."
+    },
   ],
 
   // ============================================================
@@ -597,6 +732,158 @@ const challenges = {
       direction: "AtoB",
       explanation: "The deduction is immediate and valid. And the reverse holds too — this is an isomorphism."
     },
+
+    // --- POLITICAL ECONOMY ---
+    {
+      id: "va-pe-01",
+      type: "validate",
+      domain: "political_economy",
+      difficulty: 1,
+      objectA: "Constituency demand",
+      objectB: "Legislative proposal",
+      candidate: "Political entrepreneurship (Hayekian)",
+      valid: true,
+      direction: "AtoB",
+      explanation: "In Hayek's legislative process model, the conversion of constituency feedback into new bill proposals is the morphism. This is not top-down command; it is emergent. Political entrepreneurs respond to dispersed signals (demands) by packaging them into actionable proposals — just as market entrepreneurs respond to price signals."
+    },
+    {
+      id: "va-pe-02",
+      type: "validate",
+      domain: "political_economy",
+      difficulty: 1,
+      objectA: "Enacted law",
+      objectB: "Constitutional requirement",
+      candidate: "Derives authority from",
+      valid: true,
+      direction: "BtoA",
+      explanation: "Laws derive their authority FROM the constitution, not the reverse. The direction matters categorically: the constitution is the source (domain) of validity; enacted law is the target. A law that violates its constitutional source is invalid — the morphism fails."
+    },
+    {
+      id: "va-pe-03",
+      type: "validate",
+      domain: "political_economy",
+      difficulty: 2,
+      objectA: "Expansionary fiscal policy",
+      objectB: "High unemployment",
+      candidate: "Directly causes",
+      valid: false,
+      direction: null,
+      explanation: "Expansionary fiscal policy is designed to REDUCE unemployment — the causal arrow runs the other way (high unemployment → expansionary policy as a response). 'Directly causes' in this direction is invalid. Even in economic categories where the relationship is contested, expansionary policy → high unemployment contradicts the standard Keynesian and most mainstream frameworks."
+    },
+    {
+      id: "va-pe-04",
+      type: "validate",
+      domain: "political_economy",
+      difficulty: 3,
+      objectA: "System essential variables (Easton)",
+      objectB: "Structural form of institutions",
+      candidate: "Determines",
+      valid: false,
+      direction: null,
+      explanation: "Easton's key insight is the OPPOSITE: essential variables (the capacity for binding decision-making) can be PRESERVED while structural form changes completely. It is structural change that preserves essential variables, not essential variables that determine structure. A democracy can radically restructure its institutions and remain a democracy — the essential variables survive the structural transformation."
+    },
+
+    // --- CRYPTOECONOMICS ---
+    {
+      id: "va-ce-01",
+      type: "validate",
+      domain: "cryptoeconomics",
+      difficulty: 1,
+      objectA: "Unsigned transaction",
+      objectB: "Signed transaction",
+      candidate: "Apply private key signature",
+      valid: true,
+      direction: "AtoB",
+      explanation: "Signing is the morphism that transforms an unsigned transaction into a signed one. The private key authorizes the transaction — without this morphism, the network cannot verify authorization. This is a one-way morphism: a signed transaction cannot be 'unsigned.'"
+    },
+    {
+      id: "va-ce-02",
+      type: "validate",
+      domain: "cryptoeconomics",
+      difficulty: 2,
+      objectA: "Confirmed transaction",
+      objectB: "Unconfirmed transaction",
+      candidate: "Block reorganization (reorg)",
+      valid: true,
+      direction: "AtoB",
+      explanation: "A blockchain reorganization (reorg) can reverse confirmations — making a previously confirmed transaction unconfirmed again. This is rare but real. The pedagogical point: finality is probabilistic in proof-of-work systems, not absolute. Deep enough reorgs can 'undo' any number of confirmations, though the probability decreases exponentially with depth."
+    },
+    {
+      id: "va-ce-03",
+      type: "validate",
+      domain: "cryptoeconomics",
+      difficulty: 1,
+      objectA: "Plaintext data",
+      objectB: "SHA-256 hash",
+      candidate: "Reverse SHA-256 to recover plaintext",
+      valid: false,
+      direction: null,
+      explanation: "SHA-256 is a one-way cryptographic hash function by design. No valid inverse morphism exists: given a hash, you cannot recover the original input (without brute force). This is the categorical formulation of hash function security — it is a non-invertible morphism, which is exactly why it is useful for commitments and proof-of-work."
+    },
+
+    // --- SYSTEMS SCIENCE ---
+    {
+      id: "va-ss-01",
+      type: "validate",
+      domain: "systems_science",
+      difficulty: 1,
+      objectA: "Local cell interactions",
+      objectB: "Emergent tissue property",
+      candidate: "Emergence",
+      valid: true,
+      direction: "AtoB",
+      explanation: "Emergence is the canonical morphism from micro-level interactions to macro-level patterns. Local cell interactions give rise to tissue properties that cannot be predicted from any single cell in isolation. This is the foundational move of systems science: the whole has properties that the parts do not."
+    },
+    {
+      id: "va-ss-02",
+      type: "validate",
+      domain: "systems_science",
+      difficulty: 1,
+      objectA: "Negative feedback signal",
+      objectB: "System oscillation / runaway escalation",
+      candidate: "Amplification",
+      valid: false,
+      direction: null,
+      explanation: "Negative feedback DAMPS oscillation — it corrects deviations back toward a set point. Amplification leading to runaway escalation is the signature of POSITIVE feedback. The two are categorically opposite morphisms: negative feedback → stability, positive feedback → escalation."
+    },
+    {
+      id: "va-ss-03",
+      type: "validate",
+      domain: "systems_science",
+      difficulty: 1,
+      objectA: "Positive feedback loop",
+      objectB: "Runaway escalation",
+      candidate: "Amplification",
+      valid: true,
+      direction: "AtoB",
+      explanation: "Positive feedback amplifies deviations from equilibrium, driving the system toward runaway escalation. Classic examples: bank runs (more withdrawals → more panic → more withdrawals), viral spread, nuclear fission. Each cycle amplifies the previous state — this IS the morphism from positive feedback to escalation."
+    },
+
+    // --- NEUROMORPHICS ---
+    {
+      id: "va-nm-01",
+      type: "validate",
+      domain: "neuromorphics",
+      difficulty: 1,
+      objectA: "Sensory input",
+      objectB: "Motor output",
+      candidate: "Sensorimotor neural pathway",
+      valid: true,
+      direction: "AtoB",
+      explanation: "The sensorimotor pathway is the classic perception-action arc: sensory signals enter, are processed through multiple neural layers, and drive motor outputs. This is a valid directed morphism from sensory input to motor output — the basis of reflexes, voluntary movement, and skilled behavior."
+    },
+    {
+      id: "va-nm-02",
+      type: "validate",
+      domain: "neuromorphics",
+      difficulty: 2,
+      objectA: "Motor output",
+      objectB: "Sensory input",
+      candidate: "Proprioceptive feedback",
+      valid: true,
+      direction: "AtoB",
+      explanation: "Proprioception — the sense of body position and movement — closes the sensorimotor loop. Motor outputs (muscle contractions) generate proprioceptive signals that feed back as new sensory input, informing the next movement. Both directions exist: the sensorimotor loop is a genuine cycle, not a one-way pipeline."
+    },
   ],
 
   // ============================================================
@@ -820,6 +1107,156 @@ const challenges = {
       options: ["Tadpole", "Larva", "Pupa", "Newt"],
       explanation: "A frog egg hatches into a tadpole, which then metamorphoses into an adult frog. The tadpole is the intermediate object in this composition."
     },
+
+    // --- POLITICAL ECONOMY ---
+    {
+      id: "co-pe-01",
+      type: "compose",
+      domain: "political_economy",
+      difficulty: 2,
+      prompt: "Easton's political loop: what is the composed morphism for the full cycle?",
+      chain: [
+        { from: "Constituency feedback", to: "Political input (demand)", morphism: "Input conversion" },
+        { from: "Political input (demand)", to: "Enacted policy", morphism: "Legislative processing + authority allocation" },
+      ],
+      missing: "composed",
+      answer: "Representative democracy cycle",
+      options: [
+        "Representative democracy cycle",
+        "Authoritarian command",
+        "Market equilibration",
+        "Bureaucratic processing"
+      ],
+      explanation: "Composing input conversion with legislative processing gives you the full Easton loop in one morphism: constituent feedback becomes enacted policy through the representative democratic cycle. This composition is the categorical definition of representative government — a system where inputs systematically determine outputs."
+    },
+    {
+      id: "co-pe-02",
+      type: "compose",
+      domain: "political_economy",
+      difficulty: 2,
+      prompt: "The U.S. legislative process: what is the composed outcome of all three steps?",
+      chain: [
+        { from: "Bill introduction", to: "Committee markup", morphism: "Committee referral" },
+        { from: "Committee markup", to: "Floor vote", morphism: "Committee approval" },
+        { from: "Floor vote", to: "Enacted law", morphism: "Passage and presidential signature" },
+      ],
+      missing: "composed",
+      answer: "Full U.S. legislative cycle",
+      options: [
+        "Full U.S. legislative cycle",
+        "Executive order",
+        "Judicial review",
+        "Regulatory rulemaking"
+      ],
+      explanation: "Three steps compose into one: a bill introduced in Congress becomes enacted law through committee markup, floor vote, and presidential signature. Each step is a valid morphism; their composition is the full U.S. legislative cycle. The composed morphism hides all the intermediate politics inside a single arrow."
+    },
+    {
+      id: "co-pe-03",
+      type: "compose",
+      domain: "political_economy",
+      difficulty: 2,
+      prompt: "Hayek's market cycle: what is the name for the composed process?",
+      chain: [
+        { from: "Environmental change", to: "Price signal update", morphism: "Market exchange and feedback" },
+        { from: "Price signal update", to: "New entrepreneurial plans", morphism: "Anticipatory adjustment" },
+      ],
+      missing: "composed",
+      answer: "Market coordination",
+      options: [
+        "Market coordination",
+        "Central planning",
+        "Price fixing",
+        "Regulatory arbitrage"
+      ],
+      explanation: "Composing market exchange with anticipatory adjustment gives you market coordination — how dispersed, local knowledge produces coordinated economic action without any central authority. This is Hayek's core insight: the price system is a composed morphism that aggregates information no single actor could possess."
+    },
+
+    // --- CRYPTOECONOMICS ---
+    {
+      id: "co-ce-01",
+      type: "compose",
+      domain: "cryptoeconomics",
+      difficulty: 1,
+      prompt: "What is the composed morphism for getting a transaction onto the network?",
+      chain: [
+        { from: "Wallet intent", to: "Signed transaction", morphism: "Sign with private key" },
+        { from: "Signed transaction", to: "Broadcast message", morphism: "Serialize and propagate to network" },
+      ],
+      missing: "composed",
+      answer: "Submit transaction to network",
+      options: [
+        "Submit transaction to network",
+        "Mine a block",
+        "Execute a smart contract",
+        "Verify a signature"
+      ],
+      explanation: "Signing and broadcasting compose into 'submit transaction to network' — the full user-facing operation that gets a payment or contract call onto the blockchain. Each step is a valid morphism; their composition hides the cryptographic and networking details inside a single action."
+    },
+    {
+      id: "co-ce-02",
+      type: "compose",
+      domain: "cryptoeconomics",
+      difficulty: 3,
+      prompt: "What is the composed name for the full process of running code on Ethereum?",
+      chain: [
+        { from: "Smart contract call", to: "EVM execution", morphism: "Transaction dispatch" },
+        { from: "EVM execution", to: "State transition", morphism: "Bytecode execution" },
+        { from: "State transition", to: "Block inclusion", morphism: "Gas payment + validator inclusion" },
+      ],
+      missing: "composed",
+      answer: "On-chain computation",
+      options: [
+        "On-chain computation",
+        "Off-chain processing",
+        "Layer-2 rollup",
+        "Oracle query"
+      ],
+      explanation: "Dispatch, execution, and inclusion compose into 'on-chain computation' — what it means for Ethereum to 'run code.' The composed morphism encapsulates the entire EVM lifecycle: a call arrives, bytecode executes, state changes, and the result is finalized in a block. Without all three steps, you don't have computation — you have incomplete morphisms."
+    },
+
+    // --- SYSTEMS SCIENCE ---
+    {
+      id: "co-ss-01",
+      type: "compose",
+      domain: "systems_science",
+      difficulty: 2,
+      prompt: "What is the composed name for Bunge's hierarchy from cells to organisms?",
+      chain: [
+        { from: "Cellular processes", to: "Tissue function", morphism: "Cell coordination" },
+        { from: "Tissue function", to: "Organ behavior", morphism: "Tissue integration" },
+        { from: "Organ behavior", to: "Organism function", morphism: "Organ system coordination" },
+      ],
+      missing: "composed",
+      answer: "Biological organization",
+      options: [
+        "Biological organization",
+        "Chemical synthesis",
+        "Genetic transcription",
+        "Cellular division"
+      ],
+      explanation: "Three levels compose into biological organization — how micro-level cellular processes give rise to whole-organism function through hierarchical composition. Each level is a valid morphism; their composition is the foundational principle of biology: life is organized hierarchically, and each level is irreducible to the one below."
+    },
+    {
+      id: "co-ss-02",
+      type: "compose",
+      domain: "systems_science",
+      difficulty: 2,
+      prompt: "What is the composed name for the full feedback control loop?",
+      chain: [
+        { from: "System state", to: "Sensor reading", morphism: "Measurement" },
+        { from: "Sensor reading", to: "Control signal", morphism: "Error calculation vs. goal state" },
+        { from: "Control signal", to: "Actuator response", morphism: "Control law application" },
+      ],
+      missing: "composed",
+      answer: "Closed-loop feedback control",
+      options: [
+        "Closed-loop feedback control",
+        "Open-loop control",
+        "Feedforward regulation",
+        "Kalman filtering"
+      ],
+      explanation: "Measurement, error calculation, and control law compose into closed-loop feedback control — the basis of all regulatory systems from thermostats to immune responses. Crucially, the loop closes: actuator response feeds back to change system state, completing the cycle. An open-loop system would lack this final connection."
+    },
   ],
 
   // ============================================================
@@ -990,6 +1427,108 @@ const challenges = {
       isIso: true,
       reverseMorphism: "These properties define mammal",
       explanation: "Being a mammal is definitionally equivalent to being warm-blooded and nursing young. Each statement entails the other by definition. Isomorphism."
+    },
+
+    // --- POLITICAL ECONOMY ---
+    {
+      id: "iso-pe-01",
+      type: "isomorphism",
+      domain: "political_economy",
+      difficulty: 1,
+      objectA: "Vote of no confidence",
+      objectB: "Government dissolution",
+      morphismAtoB: "Constitutional trigger",
+      isIso: true,
+      reverseMorphism: "New government formation restores parliamentary confidence",
+      explanation: "In parliamentary systems, a vote of no confidence constitutionally triggers government dissolution, and a new government formation restores parliamentary confidence. Each implies the other within that constitutional framework — a perfect isomorphism between two institutional states."
+    },
+    {
+      id: "iso-pe-02",
+      type: "isomorphism",
+      domain: "political_economy",
+      difficulty: 3,
+      objectA: "Market price feedback cycle",
+      objectB: "Legislative demand/support cycle",
+      morphismAtoB: "Abstract to Hayekian process structure",
+      isIso: true,
+      reverseMorphism: "Instantiate Hayekian process structure as market feedback",
+      explanation: "Hayek's vault finding: both cycles compress complex environmental information into signals that guide actor decisions, form anticipatory feedback loops, and are 'functionally closed but materially open.' The isomorphism is between PROCESS STRUCTURES, not content. Markets use prices; legislatures use political support signals — but the categorical architecture is identical."
+    },
+    {
+      id: "iso-pe-03",
+      type: "isomorphism",
+      domain: "political_economy",
+      difficulty: 2,
+      objectA: "Policy under regime A",
+      objectB: "Policy under regime B",
+      morphismAtoB: "Regime change",
+      isIso: false,
+      explanation: "Regime change is not an isomorphism between policy categories. Different regimes produce structurally non-equivalent institutional arrangements — the transformation destroys information about the previous regime's particular structure. You cannot recover regime A's policy logic from regime B's, because the category of admissible policies has changed."
+    },
+
+    // --- CRYPTOECONOMICS ---
+    {
+      id: "iso-ce-01",
+      type: "isomorphism",
+      domain: "cryptoeconomics",
+      difficulty: 1,
+      objectA: "Plaintext",
+      objectB: "Ciphertext (AES-256)",
+      morphismAtoB: "Encrypt with key K",
+      isIso: true,
+      reverseMorphism: "Decrypt with key K",
+      explanation: "Symmetric encryption is a category-theoretic isomorphism: encrypt with key K, then decrypt with key K, and you recover the exact original plaintext. No information is destroyed. Contrast with hash functions — encrypt/decrypt is perfectly invertible (given the key), while SHA-256 is strictly one-way."
+    },
+    {
+      id: "iso-ce-02",
+      type: "isomorphism",
+      domain: "cryptoeconomics",
+      difficulty: 2,
+      objectA: "UTXO (unspent)",
+      objectB: "UTXO (spent)",
+      morphismAtoB: "Spending transaction",
+      isIso: false,
+      explanation: "Once spent, a UTXO cannot be 'unspent' — the spending arrow is strictly one-way. This is the categorical formulation of why double-spends are impossible: the morphism from unspent to spent has no inverse in the blockchain category. The irreversibility is the security guarantee."
+    },
+
+    // --- SYSTEMS SCIENCE ---
+    {
+      id: "iso-ss-01",
+      type: "isomorphism",
+      domain: "systems_science",
+      difficulty: 2,
+      objectA: "Predator-prey population dynamics (Lotka-Volterra)",
+      objectB: "Economic boom-bust cycle",
+      morphismAtoB: "Abstract as oscillating dynamical system",
+      isIso: true,
+      reverseMorphism: "Instantiate oscillating dynamical system as predator-prey dynamics",
+      explanation: "Both systems share the same differential equation structure: a coupled oscillation where one variable's growth feeds the other's decline and vice versa. Bertalanffy's General System Theory (GST) proposes exactly this: isomorphic patterns appear across radically different domains. The functor maps predator populations to boom phases and prey populations to bust phases (or vice versa)."
+    },
+    {
+      id: "iso-ss-02",
+      type: "isomorphism",
+      domain: "systems_science",
+      difficulty: 2,
+      objectA: "Electrical RC circuit",
+      objectB: "Mechanical spring-damper system",
+      morphismAtoB: "Analogical mapping (Voltage↔Force, Current↔Velocity, R↔Damping, C↔Spring)",
+      isIso: true,
+      reverseMorphism: "Instantiate spring-damper system as electrical RC circuit",
+      explanation: "These two systems ARE the same system, described in different physical vocabularies. The analogy is a category-theoretic isomorphism: voltage↔force, current↔velocity, resistance↔damping, capacitance↔spring constant. Every equation in one domain has a corresponding equation in the other. Engineers have always known this; category theory formalizes it."
+    },
+
+    // --- NEUROMORPHICS ---
+    {
+      id: "iso-nm-01",
+      type: "isomorphism",
+      domain: "neuromorphics",
+      difficulty: 2,
+      objectA: "Biological neuron (processing pattern X)",
+      objectB: "Silicon artificial neuron (implementing same function)",
+      morphismAtoB: "Abstract to substrate-independent computational function",
+      isIso: true,
+      reverseMorphism: "Instantiate function in biological substrate",
+      explanation: "The FUNCTION is preserved across substrates; energy cost, spike timing, and metabolic details are lost. This is why neuromorphic computing works: the mathematics of the computation is substrate-independent, and a functor from biological to artificial implementation preserves what matters (input-output behavior). Note: not a perfect isomorphism — biological neurons have richer dynamics than formal models capture."
     },
   ],
 
@@ -1422,6 +1961,124 @@ const challenges = {
       synthesisQuestion: "Is digitization an isomorphism?",
       synthesisAnswer: "Approximately, for human listeners — at 44.1 kHz / 16-bit, the reconstruction is perceptually lossless (humans cannot hear the difference). But mathematically, quantization always loses some information: the continuous original cannot be recovered exactly from a discrete sample. It is an approximate isomorphism — good enough for practice, not perfect in theory."
     },
+
+    // --- POLITICAL ECONOMY (mixed domain for cross-domain insight) ---
+    {
+      id: "cs-pe-01",
+      type: "category_switch",
+      domain: "mixed",
+      difficulty: 3,
+      prompt: "Same objects, three different categories. How does the morphism change?",
+      objectA: "Environmental disturbance",
+      objectB: "System adaptation",
+      categories: [
+        {
+          name: "Category of political systems (Easton)",
+          morphism: "Disturbance → stress → structural reorganization preserving essential variables",
+          explanation: "In Easton's framework, environmental disturbances create system stress. The political system adapts structurally while preserving its capacity for binding decision-making. The morphism is stress-mediated structural adaptation."
+        },
+        {
+          name: "Category of market systems (Hayek)",
+          morphism: "Price shock → entrepreneurial re-planning → new production structure preserving coordination",
+          explanation: "In Hayek's framework, a price shock (environmental disturbance) drives entrepreneurial re-planning. Firms adapt their production structures while preserving market coordination as the essential function. The morphism is price-mediated re-planning."
+        },
+        {
+          name: "Category of immune systems (biology)",
+          morphism: "Pathogen → immune response → new antibody profile preserving organism viability",
+          explanation: "A pathogen (disturbance) triggers immune response (adaptation) that produces new antibodies while preserving the organism's viability. The morphism is immune-mediated reorganization."
+        }
+      ],
+      synthesisQuestion: "What do these three morphisms have in common categorically?",
+      synthesisAnswer: "All three preserve an 'essential variable' (binding decisions / market coordination / viability) while allowing surface structure to change completely. Easton and Hayek discovered the same categorical structure from different starting points — a functor that preserves essential variables under disturbance appears in politics, markets, AND biology."
+    },
+    {
+      id: "cs-pe-02",
+      type: "category_switch",
+      domain: "mixed",
+      difficulty: 2,
+      prompt: "Same objects, three different categories. What changes?",
+      objectA: "Labor",
+      objectB: "Capital",
+      categories: [
+        {
+          name: "Category of neoclassical economics",
+          morphism: "No direct morphism (both map to Output as factor inputs)",
+          explanation: "In neoclassical theory, labor and capital are both inputs to a production function. They don't have a direct morphism to each other — they both have morphisms TO output. The category has a different structure."
+        },
+        {
+          name: "Category of Marxist political economy",
+          morphism: "Labor → Capital via 'surplus value extraction'",
+          explanation: "Marx argues that unpaid labor time is extracted and converted into capital accumulation. There IS a direct morphism from labor to capital — labor produces the surplus that becomes capital."
+        },
+        {
+          name: "Category of institutional economics",
+          morphism: "Capital → Labor via 'employment, wages, working conditions'",
+          explanation: "Institutional economists emphasize how capital owners shape labor through employment contracts. The dominant morphism runs from capital to labor — capital structures the terms under which labor operates."
+        }
+      ],
+      synthesisQuestion: "What does this example illustrate about the relationship between categories and morphisms?",
+      synthesisAnswer: "Morphism direction — and even whether a morphism EXISTS — depends entirely on the category chosen. The same two objects (labor, capital) have no direct morphism in one theory, a labor→capital morphism in another, and a capital→labor morphism in a third. The category is not neutral — it encodes a theory of the world."
+    },
+
+    // --- CRYPTOECONOMICS (mixed domain) ---
+    {
+      id: "cs-ce-01",
+      type: "category_switch",
+      domain: "mixed",
+      difficulty: 2,
+      prompt: "Same relationship, three different categories. What changes?",
+      objectA: "Ethereum validator",
+      objectB: "Network consensus",
+      categories: [
+        {
+          name: "Category of cryptographic operations",
+          morphism: "Validator → Consensus via 'produce valid block + attestation'",
+          explanation: "Cryptographically, a validator contributes to consensus by producing a valid block and attestation that passes the protocol's verification rules. The morphism is purely technical."
+        },
+        {
+          name: "Category of token economics",
+          morphism: "Validator → Consensus via 'stake 32 ETH, earn rewards for honest participation'",
+          explanation: "Economically, validators are incentivized to contribute to consensus by the staking reward structure. The morphism is mediated by the incentive mechanism — economic self-interest aligns with network security."
+        },
+        {
+          name: "Category of game theory",
+          morphism: "Validator → Consensus via 'defection punished (slashing), honest play is dominant strategy'",
+          explanation: "Game-theoretically, honest validation is a Nash equilibrium because defection (slashing) is more costly than honest rewards. The morphism exists because rational agents choose it."
+        }
+      ],
+      synthesisQuestion: "Why does Ethereum's design combine all three categories?",
+      synthesisAnswer: "A robust consensus mechanism must hold in all three categories simultaneously — cryptographically valid, economically incentivized, and game-theoretically stable. A design that holds in only one category is fragile. Proof-of-Stake's strength is that the three morphisms reinforce each other: the crypto, economic, and game-theoretic reasons all point the same direction."
+    },
+
+    // --- SYSTEMS SCIENCE (mixed domain) ---
+    {
+      id: "cs-ss-01",
+      type: "category_switch",
+      domain: "mixed",
+      difficulty: 2,
+      prompt: "Same objects, three different frameworks. What changes?",
+      objectA: "Population growth",
+      objectB: "Resource depletion",
+      categories: [
+        {
+          name: "Category of ecology",
+          morphism: "Population → Resource via 'consumption at rate r'",
+          explanation: "In simple ecological models, population growth drives resource depletion — a one-way causal arrow. Population increases; resources decrease."
+        },
+        {
+          name: "Category of economics",
+          morphism: "Population → Resource via 'demand drives down supply (price signal)'",
+          explanation: "In economic models, population growth increases demand, which depletes supply and raises prices. Still a one-way causal arrow — population drives resource economics."
+        },
+        {
+          name: "Category of systems science (Lotka-Volterra)",
+          morphism: "Population ↔ Resource via 'coupled feedback (oscillation)'",
+          explanation: "Systems science reveals the bidirectional loop: population grows when resources are abundant, which depletes resources, which reduces population, which allows resource recovery — a cycle. The full structure requires BOTH arrows."
+        }
+      ],
+      synthesisQuestion: "What does adding the second arrow (Resource → Population) reveal?",
+      synthesisAnswer: "It reveals that ecology and economics are modeling only HALF the system — the causal arrow FROM population. Systems science closes the loop: resource depletion feeds back to constrain population. The resulting Lotka-Volterra cycle is richer than either one-way model. Categorical completeness requires both arrows."
+    },
   ],
 
   // ============================================================
@@ -1552,6 +2209,69 @@ const challenges = {
       errorIndex: 0,
       errorType: "wrong_target",
       explanation: "Germination produces a seedling, not a mature plant. The morphism from seed to mature plant would be a composition of germinate ∘ grow, not germination alone."
+    },
+
+    // --- POLITICAL ECONOMY ---
+    {
+      id: "se-pe-01",
+      type: "spot_error",
+      domain: "political_economy",
+      difficulty: 2,
+      prompt: "Easton's political system loop — one arrow violates the model. Which one?",
+      diagram: {
+        objects: ["Constituency demands", "Political system", "Authoritative allocation", "Environmental feedback"],
+        morphisms: [
+          { from: 0, to: 1, label: "Input conversion", valid: true },
+          { from: 1, to: 2, label: "Authority processing + decision", valid: true },
+          { from: 2, to: 3, label: "Output consequences", valid: true },
+          { from: 3, to: 0, label: "Feedback informs new demands", valid: true },
+          { from: 2, to: 0, label: "Outputs directly reprogram citizen demands", valid: false },
+        ]
+      },
+      errorIndex: 4,
+      errorType: "invalid_connection",
+      explanation: "Outputs feed BACK through the environment — they don't directly reprogram demands. The feedback loop is mediated: citizens interpret outputs and respond, they don't simply obey them. A system where outputs directly set inputs would be totalitarian control, not a feedback loop. Easton's model specifically preserves this mediation."
+    },
+
+    // --- CRYPTOECONOMICS ---
+    {
+      id: "se-ce-01",
+      type: "spot_error",
+      domain: "cryptoeconomics",
+      difficulty: 1,
+      prompt: "A double-spend attempt — one arrow is categorically impossible. Which one?",
+      diagram: {
+        objects: ["UTXO balance", "Alice's wallet", "Bob's wallet"],
+        morphisms: [
+          { from: 0, to: 1, label: "Spend to Alice", valid: true },
+          { from: 0, to: 2, label: "Spend same UTXO to Bob", valid: false },
+        ]
+      },
+      errorIndex: 1,
+      errorType: "invalid_connection",
+      explanation: "The same UTXO cannot have two valid outgoing 'spend' morphisms simultaneously. A UTXO is a one-time-use object: spending it destroys it (creates new UTXOs). The second spend arrow doesn't exist — this is exactly what blockchain consensus enforces. The categorical constraint (a spent UTXO has no outgoing morphisms) IS the double-spend prevention."
+    },
+
+    // --- SYSTEMS SCIENCE ---
+    {
+      id: "se-ss-01",
+      type: "spot_error",
+      domain: "systems_science",
+      difficulty: 2,
+      prompt: "A feedback control chain — one arrow is wrong. Which one?",
+      diagram: {
+        objects: ["Goal state", "Error signal", "Control action", "System output", "Sensor reading"],
+        morphisms: [
+          { from: 0, to: 1, label: "Compare goal to sensor reading", valid: true },
+          { from: 1, to: 2, label: "Apply control law", valid: true },
+          { from: 2, to: 3, label: "Actuate system", valid: true },
+          { from: 3, to: 4, label: "Measure output", valid: true },
+          { from: 4, to: 0, label: "Sensor directly sets goal state", valid: false },
+        ]
+      },
+      errorIndex: 4,
+      errorType: "wrong_target",
+      explanation: "The sensor reading feeds back to the COMPARATOR (which computes the error signal), not to the goal state. The goal state is set externally by the system designer — it is the reference input. If the sensor could rewrite the goal state, the system would have no meaningful objective. The correct arrow is sensor reading → error signal (via comparison with goal state)."
     },
   ],
 
@@ -2001,6 +2721,176 @@ const challenges = {
         morphisms: { "next day": "+1" }
       },
       explanation: "The simplest possible functor: map each day to its ordinal number and 'next day' to +1. Composition is preserved: next day twice from Monday = Wednesday, and +1 twice from 1 = 3. This illustrates that any ordered sequence has a natural functor to the natural numbers."
+    },
+
+    // --- POLITICAL ECONOMY ---
+    {
+      id: "fu-pe-01",
+      type: "functor_match",
+      domain: "political_economy",
+      difficulty: 3,
+      prompt: "Hayek's core finding: markets and legislatures share the same categorical process architecture. Map the objects and morphisms.",
+      categoryA: {
+        name: "𝒞: Market process (Hayek)",
+        objects: ["Entrepreneurial plans", "Market exchange", "Price signals", "Capital structure"],
+        morphisms: [
+          { from: "Entrepreneurial plans", to: "Market exchange", label: "Production + offering" },
+          { from: "Market exchange", to: "Price signals", label: "Competitive selection" },
+          { from: "Price signals", to: "Entrepreneurial plans", label: "Anticipatory adjustment" },
+          { from: "Entrepreneurial plans", to: "Capital structure", label: "Investment commitment" }
+        ]
+      },
+      categoryB: {
+        name: "𝒟: Legislative process (Hayek)",
+        objects: ["Political proposals", "Deliberation / negotiation", "Legislative support signals", "Enacted law"],
+        morphisms: [
+          { from: "Political proposals", to: "Deliberation / negotiation", label: "Political entrepreneurship" },
+          { from: "Deliberation / negotiation", to: "Legislative support signals", label: "Engagement + vote counting" },
+          { from: "Legislative support signals", to: "Political proposals", label: "Adaptation to political feasibility" },
+          { from: "Political proposals", to: "Enacted law", label: "Drafting + passage" }
+        ]
+      },
+      correctMapping: {
+        objects: {
+          "Entrepreneurial plans": "Political proposals",
+          "Market exchange": "Deliberation / negotiation",
+          "Price signals": "Legislative support signals",
+          "Capital structure": "Enacted law"
+        },
+        morphisms: {
+          "Production + offering": "Political entrepreneurship",
+          "Competitive selection": "Engagement + vote counting",
+          "Anticipatory adjustment": "Adaptation to political feasibility",
+          "Investment commitment": "Drafting + passage"
+        }
+      },
+      explanation: "The functor preserves the process architecture — how information flows and guides decisions — while objects and morphisms change completely. Entrepreneurial plans map to political proposals; price signals map to legislative support signals; capital investment maps to enacted law. Hayek could describe markets, legislatures, science, and brains with one framework because they are categorically equivalent at the process level."
+    },
+
+    // --- CRYPTOECONOMICS ---
+    {
+      id: "fu-ce-01",
+      type: "functor_match",
+      domain: "cryptoeconomics",
+      difficulty: 3,
+      prompt: "The blockchain isomorphism: Bitcoin and Ethereum share the same 4-subsystem governance architecture. Map the objects and morphisms.",
+      categoryA: {
+        name: "𝒞: Bitcoin architecture",
+        objects: ["Core developers", "Miners", "Protocol rules", "Proof-of-Work consensus"],
+        morphisms: [
+          { from: "Core developers", to: "Protocol rules", label: "BIP proposals" },
+          { from: "Protocol rules", to: "Miners", label: "Enforce rules" },
+          { from: "Miners", to: "Proof-of-Work consensus", label: "Produce blocks" },
+          { from: "Proof-of-Work consensus", to: "Protocol rules", label: "Validate" }
+        ]
+      },
+      categoryB: {
+        name: "𝒟: Ethereum architecture",
+        objects: ["Ethereum Foundation / EIPs", "Validators", "Protocol rules", "Proof-of-Stake consensus"],
+        morphisms: [
+          { from: "Ethereum Foundation / EIPs", to: "Protocol rules", label: "EIP proposals" },
+          { from: "Protocol rules", to: "Validators", label: "Enforce rules" },
+          { from: "Validators", to: "Proof-of-Stake consensus", label: "Attest + propose blocks" },
+          { from: "Proof-of-Stake consensus", to: "Protocol rules", label: "Validate" }
+        ]
+      },
+      correctMapping: {
+        objects: {
+          "Core developers": "Ethereum Foundation / EIPs",
+          "Miners": "Validators",
+          "Protocol rules": "Protocol rules",
+          "Proof-of-Work consensus": "Proof-of-Stake consensus"
+        },
+        morphisms: {
+          "BIP proposals": "EIP proposals",
+          "Enforce rules": "Enforce rules",
+          "Produce blocks": "Attest + propose blocks",
+          "Validate": "Validate"
+        }
+      },
+      explanation: "Despite radically different consensus mechanisms (mining vs. staking), both blockchains share the identical 4-subsystem governance architecture. The functor reveals structural isomorphism: the way developers propose, validators enforce, consensus produces, and rules validate is the same categorical pattern in Bitcoin and Ethereum — and also in Cosmos, Solana, and other chains."
+    },
+
+    // --- SYSTEMS SCIENCE ---
+    {
+      id: "fu-ss-01",
+      type: "functor_match",
+      domain: "systems_science",
+      difficulty: 3,
+      prompt: "Bertalanffy's GST: cell biology and social organization share the same structural pattern. Map the objects and morphisms.",
+      categoryA: {
+        name: "𝒞: Cell biology",
+        objects: ["Nucleus", "Membrane", "Mitochondria", "Cytoplasm"],
+        morphisms: [
+          { from: "Nucleus", to: "Cytoplasm", label: "Gene expression" },
+          { from: "Mitochondria", to: "Cytoplasm", label: "Energy supply" },
+          { from: "Membrane", to: "Cytoplasm", label: "Selective import/export" }
+        ]
+      },
+      categoryB: {
+        name: "𝒟: Social organization",
+        objects: ["Central governance", "Boundary / law", "Resource production", "Operating units"],
+        morphisms: [
+          { from: "Central governance", to: "Operating units", label: "Policy implementation" },
+          { from: "Resource production", to: "Operating units", label: "Resource allocation" },
+          { from: "Boundary / law", to: "Operating units", label: "Constraint enforcement" }
+        ]
+      },
+      correctMapping: {
+        objects: {
+          "Nucleus": "Central governance",
+          "Membrane": "Boundary / law",
+          "Mitochondria": "Resource production",
+          "Cytoplasm": "Operating units"
+        },
+        morphisms: {
+          "Gene expression": "Policy implementation",
+          "Energy supply": "Resource allocation",
+          "Selective import/export": "Constraint enforcement"
+        }
+      },
+      explanation: "Bertalanffy's General System Theory proposes that deep structural patterns repeat across scales and domains. The nucleus (information/control) maps to central governance; the membrane (selective boundary) maps to law; mitochondria (energy) maps to resource production; cytoplasm (working space) maps to operating units. The functor preserves the organizational logic while the physical substrate changes completely."
+    },
+
+    // --- NEUROMORPHICS ---
+    {
+      id: "fu-nm-01",
+      type: "functor_match",
+      domain: "neuromorphics",
+      difficulty: 2,
+      prompt: "The substrate-independence functor: biological neural circuits and artificial neural networks share the same computational architecture. Map the objects and morphisms.",
+      categoryA: {
+        name: "𝒞: Biological neural circuit",
+        objects: ["Neuron", "Synapse", "Neural population", "Brain region"],
+        morphisms: [
+          { from: "Neuron", to: "Neural population", label: "Collective firing" },
+          { from: "Synapse", to: "Neuron", label: "Weight input" },
+          { from: "Neural population", to: "Brain region", label: "Functional organization" }
+        ]
+      },
+      categoryB: {
+        name: "𝒟: Artificial neural network",
+        objects: ["Unit / node", "Weight", "Layer", "Network"],
+        morphisms: [
+          { from: "Unit / node", to: "Layer", label: "Activation aggregation" },
+          { from: "Weight", to: "Unit / node", label: "Weighted input" },
+          { from: "Layer", to: "Network", label: "Hierarchical composition" }
+        ]
+      },
+      correctMapping: {
+        objects: {
+          "Neuron": "Unit / node",
+          "Synapse": "Weight",
+          "Neural population": "Layer",
+          "Brain region": "Network"
+        },
+        morphisms: {
+          "Collective firing": "Activation aggregation",
+          "Weight input": "Weighted input",
+          "Functional organization": "Hierarchical composition"
+        }
+      },
+      explanation: "The functor preserves computational structure (what is computed) while abstracting away biological detail (how it is implemented). Neurons map to nodes; synapses map to weights; populations map to layers; brain regions map to networks. This is why artificial neural networks can approximate biological computation — the mathematics is substrate-independent, and the functor formalizes that independence."
     },
   ],
 
@@ -2619,6 +3509,248 @@ const challenges = {
         direction: "AtoB",
         isIso: true,
         explanation: "Lock → open door is an isomorphism: the key unlocks, and re-locking with the same key reverses it. The key is both an object (a physical thing) and a morphism (a transformation specification) — this dual role is common in category theory. In cryptography, keys are formally modeled as morphisms in categories of encrypted states."
+      }
+    },
+
+    // --- POLITICAL ECONOMY ---
+    {
+      id: "fc-pe-01",
+      type: "free_construction",
+      domain: "political_economy",
+      difficulty: 2,
+      objectA: "Tax policy",
+      objectB: "Income inequality",
+      steps: [
+        {
+          question: "Does a morphism exist between tax policy and income inequality?",
+          options: ["Yes", "No", "Depends on the category"],
+          answer: "Yes"
+        },
+        {
+          question: "In a category of policy effects, what direction does the morphism go?",
+          options: [
+            "Tax policy → Income inequality (policy shapes distribution)",
+            "Income inequality → Tax policy (inequality drives policy)",
+            "Both directions simultaneously"
+          ],
+          answer: "Tax policy → Income inequality (policy shapes distribution)"
+        },
+        {
+          question: "Is this an isomorphism?",
+          options: [
+            "Yes — you can read the exact tax policy back from observed inequality",
+            "No — many different policies could produce similar distributions; the morphism is lossy"
+          ],
+          answer: "No — many different policies could produce similar distributions; the morphism is lossy"
+        }
+      ],
+      authorAnalysis: {
+        category: "Policy effects",
+        morphism: "Tax policy shapes income distribution",
+        direction: "AtoB",
+        isIso: false,
+        explanation: "In a causal-policy category, tax policy → income inequality is a valid one-way morphism. It is not an isomorphism: many different policies can produce similar distributional outcomes, so you cannot uniquely recover the policy from the distribution. The morphism is informationally lossy."
+      }
+    },
+    {
+      id: "fc-pe-02",
+      type: "free_construction",
+      domain: "political_economy",
+      difficulty: 3,
+      objectA: "System under stress (Easton)",
+      objectB: "Structurally transformed system",
+      steps: [
+        {
+          question: "Does a morphism exist between a political system under stress and its structurally transformed successor?",
+          options: ["Yes", "No", "Only in authoritarian systems"],
+          answer: "Yes"
+        },
+        {
+          question: "What direction does the morphism go?",
+          options: [
+            "System under stress → Structurally transformed system (stress drives adaptation)",
+            "Structurally transformed system → System under stress (change creates instability)",
+            "Neither — stress and transformation are unrelated"
+          ],
+          answer: "System under stress → Structurally transformed system (stress drives adaptation)"
+        },
+        {
+          question: "Easton's key claim: is this an isomorphism?",
+          options: [
+            "Yes — essential variables (binding decision-making capacity) are preserved across transformation",
+            "No — structural transformation destroys the original system's identity"
+          ],
+          answer: "Yes — essential variables (binding decision-making capacity) are preserved across transformation"
+        }
+      ],
+      authorAnalysis: {
+        category: "Political systems with essential-variable functor",
+        morphism: "Structural adaptation preserving essential variables",
+        direction: "AtoB",
+        isIso: true,
+        explanation: "Easton's key insight: a political system's essential variables — the capacity to make and enforce binding decisions — can be preserved even as the surface institutions are completely restructured. The old and new structures are isomorphic at the level of essential variables. A revolution that preserves democratic governance is categorically an isomorphism; one that abolishes it is not."
+      }
+    },
+
+    // --- CRYPTOECONOMICS ---
+    {
+      id: "fc-ce-01",
+      type: "free_construction",
+      domain: "cryptoeconomics",
+      difficulty: 2,
+      objectA: "Private key",
+      objectB: "Bitcoin ownership",
+      steps: [
+        {
+          question: "Does a morphism exist between private key possession and Bitcoin ownership?",
+          options: ["Yes", "No", "Only on certain blockchains"],
+          answer: "Yes"
+        },
+        {
+          question: "What direction does the morphism go?",
+          options: [
+            "Private key → Bitcoin ownership (possessing the key IS ownership)",
+            "Bitcoin ownership → Private key (ownership implies a key exists somewhere)",
+            "Both directions simultaneously"
+          ],
+          answer: "Private key → Bitcoin ownership (possessing the key IS ownership)"
+        },
+        {
+          question: "Is this an isomorphism?",
+          options: [
+            "Yes — key possession and Bitcoin ownership are cryptographically identical; a perfect bijection",
+            "No — you can own Bitcoin without knowing your private key (e.g., custodial exchange)"
+          ],
+          answer: "Yes — key possession and Bitcoin ownership are cryptographically identical; a perfect bijection"
+        }
+      ],
+      authorAnalysis: {
+        category: "Cryptographic ownership",
+        morphism: "Key possession ↔ asset control",
+        direction: "AtoB",
+        isIso: true,
+        explanation: "In the non-custodial Bitcoin category, private key possession IS ownership — a real-world ownership claim that happens to be a mathematical isomorphism. Own the key ↔ control the Bitcoin, with no information lost. This is unusual: most ownership claims are social/legal constructs that are not isomorphisms. Bitcoin makes ownership a cryptographic fact."
+      }
+    },
+    {
+      id: "fc-ce-02",
+      type: "free_construction",
+      domain: "cryptoeconomics",
+      difficulty: 3,
+      objectA: "Cross-chain bridge (IBC/CCIP)",
+      objectB: "Preserved transaction semantics",
+      steps: [
+        {
+          question: "Does a morphism exist between a cross-chain bridge and preserved transaction semantics?",
+          options: ["Yes", "No", "Only for wrapped tokens"],
+          answer: "Yes"
+        },
+        {
+          question: "What direction does the morphism go?",
+          options: [
+            "Bridge → Preserved semantics (the bridge maps transactions across chains while preserving meaning)",
+            "Preserved semantics → Bridge (semantic requirements constrain bridge design)",
+            "Neither — bridges don't preserve semantics"
+          ],
+          answer: "Bridge → Preserved semantics (the bridge maps transactions across chains while preserving meaning)"
+        },
+        {
+          question: "Is a cross-chain bridge an isomorphism between chains?",
+          options: [
+            "Yes — bridges perfectly translate all transaction properties between chains",
+            "No — bridges lose context (gas models differ, finality guarantees differ); it is a functor, not an isomorphism"
+          ],
+          answer: "No — bridges lose context (gas models differ, finality guarantees differ); it is a functor, not an isomorphism"
+        }
+      ],
+      authorAnalysis: {
+        category: "Cross-chain protocol category",
+        morphism: "Structure-preserving translation between chain semantics",
+        direction: "AtoB",
+        isIso: false,
+        explanation: "A cross-chain bridge is a functor: it maps transactions and their relationships from one chain's category to another's, preserving compositionality (chained operations stay chained). But it is not an isomorphism — gas models, finality guarantees, and execution semantics differ between chains. Information is lost or transformed. The functor captures what is preserved; the failure of isomorphism captures what is not."
+      }
+    },
+
+    // --- SYSTEMS SCIENCE ---
+    {
+      id: "fc-ss-01",
+      type: "free_construction",
+      domain: "systems_science",
+      difficulty: 2,
+      objectA: "System perturbation",
+      objectB: "System resilience",
+      steps: [
+        {
+          question: "Does a morphism exist between system perturbation and system resilience?",
+          options: ["Yes", "No", "Depends on the system type"],
+          answer: "Yes"
+        },
+        {
+          question: "What direction does the morphism go?",
+          options: [
+            "Perturbation → System resilience (perturbation reveals whether resilience exists)",
+            "System resilience → Perturbation (resilient systems attract disturbances)",
+            "Both equally"
+          ],
+          answer: "Perturbation → System resilience (perturbation reveals whether resilience exists)"
+        },
+        {
+          question: "Is this an isomorphism?",
+          options: [
+            "Yes — knowing the perturbation tells you the system's resilience",
+            "No — knowing the perturbation doesn't tell you resilience, and knowing resilience doesn't specify the perturbation"
+          ],
+          answer: "No — knowing the perturbation doesn't tell you resilience, and knowing resilience doesn't specify the perturbation"
+        }
+      ],
+      authorAnalysis: {
+        category: "Causal-functional relationships",
+        morphism: "Perturbation tests/reveals resilience",
+        direction: "AtoB",
+        isIso: false,
+        explanation: "Resilience is a property of the system itself, independent of any particular perturbation. The morphism runs from perturbation to resilience (the perturbation probes whether resilience exists) but is one-way: the perturbation doesn't create resilience, and knowing a system is resilient doesn't tell you which perturbation it faced. Non-invertible."
+      }
+    },
+
+    // --- NEUROMORPHICS ---
+    {
+      id: "fc-nm-01",
+      type: "free_construction",
+      domain: "neuromorphics",
+      difficulty: 3,
+      objectA: "Hebbian learning ('neurons that fire together wire together')",
+      objectB: "Gradient descent (backpropagation)",
+      steps: [
+        {
+          question: "Does a morphism exist between Hebbian learning and gradient descent?",
+          options: ["Yes — both are learning algorithms", "No — they are entirely incompatible", "Only in hybrid architectures"],
+          answer: "Yes — both are learning algorithms"
+        },
+        {
+          question: "What direction does the morphism go?",
+          options: [
+            "Hebbian → Gradient descent (Hebbian is a local rule; backprop generalizes to global optimization)",
+            "Gradient descent → Hebbian (backprop is the general case; Hebbian is a special case)",
+            "Neither direction — they are incomparable"
+          ],
+          answer: "Hebbian → Gradient descent (Hebbian is a local rule; backprop generalizes to global optimization)"
+        },
+        {
+          question: "Is this an isomorphism?",
+          options: [
+            "Yes — Hebbian learning and gradient descent are equivalent for all purposes",
+            "No — backpropagation requires a global error signal that Hebbian rules cannot provide; locality is lost"
+          ],
+          answer: "No — backpropagation requires a global error signal that Hebbian rules cannot provide; locality is lost"
+        }
+      ],
+      authorAnalysis: {
+        category: "Learning algorithms",
+        morphism: "Generalization from local to global optimization",
+        direction: "AtoB",
+        isIso: false,
+        explanation: "Hebbian learning is a purely local rule (each synapse updates based only on the activity of its two connected neurons). Gradient descent requires propagating a global error signal backward through the entire network — a fundamentally non-local operation. The morphism from Hebbian to backprop is a generalization that adds information (the global loss function). It is not invertible because locality is a structural property that gradient descent abandons."
       }
     },
   ],

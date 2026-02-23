@@ -241,6 +241,10 @@ body {
 .domain-logic { background: #dbeafe; color: #1e40af; }
 .domain-family { background: #dcfce7; color: #166534; }
 .domain-mixed { background: #f3e8ff; color: #6b21a8; }
+.domain-political_economy { background: #e0e7ff; color: #4338ca; }
+.domain-cryptoeconomics { background: #ede9fe; color: #7c3aed; }
+.domain-systems_science { background: #d1fae5; color: #065f46; }
+.domain-neuromorphics { background: #ffe4e6; color: #9f1239; }
 
 .diff-tag {
   font-size: 12px;
@@ -1359,6 +1363,36 @@ body {
 .testout-pip.pip-pending   { background: #e0e0e0; }
 
 /* ---- LOCKED BANNER (challenge view) ---- */
+
+.locked-gate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 48px 32px;
+  text-align: center;
+  color: #555;
+}
+
+.locked-gate-icon {
+  font-size: 40px;
+  opacity: 0.6;
+}
+
+.locked-gate h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  color: var(--ocean-800);
+  margin: 0;
+}
+
+.locked-gate p {
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 340px;
+  margin: 0;
+}
 
 .locked-banner {
   display: flex;
