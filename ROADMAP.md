@@ -6,6 +6,67 @@ All 8 challenge types are fully playable with SVG commutative diagrams rendered
 after each answer. Diagrams follow tikz-cd conventions: stealth arrowheads,
 geometric layouts (commutative triangles for composition), no flowchart boxes.
 - localStorage persistence (history, streak, accuracy) and spaced-repetition weighting are now implemented.
+- Halcyonic visual overhaul: animated ocean/teal gradient background, Fraunces display font, glassmorphism cards, gradient buttons, ocean design tokens throughout.
+- Help modal fully rewritten in plain English; logic domain vocabulary added (conjunction, modus ponens, contrapositive, inference rule, etc.).
+
+---
+
+## NEXT: Tier Unlock System (Option C — approved)
+
+### Rationale
+
+The 8 challenge types have implicit pedagogical dependencies. Exposing all of
+them immediately can be overwhelming and pedagogically backwards. A tier system
+guides new learners through the material in the right order while respecting
+prior knowledge via a test-out path.
+
+### Tier Structure
+
+| Tier | Types | Always available? |
+|------|-------|-------------------|
+| **Foundation** | Classify, Validate | Yes — always unlocked |
+| **Core** | Compose, Isomorphism, Spot the Error | Unlocks after 5 correct in Foundation, OR test-out pass |
+| **Advanced** | Category Switch, Functor Match, Free Construction | Unlocks after 5 correct in Core, OR test-out pass |
+
+The dependency rationale:
+```
+Classify → Validate → Compose → Isomorphism
+                         │
+                         ▼
+                   Spot the Error
+                         │
+                         ▼
+              Category Switch → Functor Match → Free Construction
+```
+
+### Soft Gate (not hard wall)
+
+Locked tiers are **dimmed** on the main menu but never fully blocked. A user
+can click into a locked type and see a banner: *"Core tier — complete Foundation
+challenges or test out to unlock."* with a "Try anyway" link. Adult learners
+must never feel trapped.
+
+### Test-Out Flow
+
+Each locked tier displays a "Test out →" button. Clicking it runs **5 challenges**
+sampled randomly from that tier's types. Pass **4 out of 5** → tier immediately
+unlocked. Challenges answered during test-out count toward `history` normally.
+
+### Open Questions (resolved)
+- Test-out bar: **4/5** ✓
+- Organic unlock bar: **5 correct across the tier** (not per-type — more forgiving)
+- Re-locking: **never** — once unlocked, always unlocked ✓
+- Test-out challenges count toward history: **yes** ✓
+
+### Implementation Notes
+
+- Unlock state stored in localStorage under existing `"ct-trainer-v1"` key:
+  `{ history, streak, unlockedTiers: ['foundation', 'core', 'advanced'] }`
+- Derive `foundationCorrect` and `coreCorrect` counts from existing `history`
+  object — no schema migration needed for organic unlock
+- Test-out is a small modal or inline flow, not a separate route
+- Main menu cards: locked cards get reduced opacity + lock icon + "Test out" CTA
+- `weightedShuffle` already works per-type; no changes needed there
 
 ---
 
@@ -92,3 +153,43 @@ These can be done without any new dependencies:
 - ~~**Persistence**: localStorage for progress, streaks, accuracy per type~~
 - **Export**: Download current diagram as SVG or PNG
 - **Sharing**: URL-encoded challenge state so you can link to a specific challenge
+
+### Cross-Device Sync — Upgrade Path
+
+Progress is currently stored per-device in localStorage. Two upgrade tiers:
+
+#### Short term: Export / Import (~30 min, no backend)
+
+Add an Export button in the header that serializes the `"ct-trainer-v1"`
+localStorage blob to a downloadable JSON file. Add a corresponding Import
+button that reads the file and merges history (taking the higher `correct`
+count per challenge to avoid regressing).
+
+```js
+// Export
+const blob = new Blob([localStorage.getItem('ct-trainer-v1')], { type: 'application/json' })
+const url = URL.createObjectURL(blob)
+// ... trigger download
+
+// Import
+const merged = mergeHistory(existing, imported) // max(correct), max(attempts)
+localStorage.setItem('ct-trainer-v1', JSON.stringify(merged))
+```
+
+No server, no auth, no dependencies. Works on Vercel as-is. Good enough for
+a single user moving between machines or doing a browser migration.
+
+#### Long term: Authenticated backend (~1–2 days, requires backend)
+
+The `history` object in localStorage maps cleanly to a single database row
+keyed by `userId`. The schema is already flat enough to store as JSON.
+
+Recommended stack:
+- **Auth**: [Clerk](https://clerk.com/) — drop-in React auth, generous free tier
+- **Database**: [Supabase](https://supabase.com/) or [Turso](https://turso.tech/) (SQLite-compatible, edge-friendly)
+- **API**: A single Vercel serverless function (`/api/sync`) — POST to save, GET to load
+
+The sync function would accept the same `{ history, streak }` shape that
+localStorage already uses, storing it per-user. On mount, fetch from the API
+instead of (or in addition to) localStorage, merging the same way as the
+import flow above.
