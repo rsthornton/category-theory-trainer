@@ -150,6 +150,54 @@ function DefinitionsTab() {
         </tbody>
       </table>
 
+      <p className="def-subsection-label">Logic domain vocabulary</p>
+      <table className="def-table">
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Meaning</th>
+            <th>In CT terms</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Proposition</td>
+            <td>A statement that is either true or false — e.g. "It is raining."</td>
+            <td>An <strong>object</strong> in the logic category</td>
+          </tr>
+          <tr>
+            <td>Conjunction</td>
+            <td>"P and Q" — true only when both P and Q are true.</td>
+            <td>An object: the combined proposition P ∧ Q</td>
+          </tr>
+          <tr>
+            <td>Conjunction introduction</td>
+            <td>Given P and given Q separately, derive "P and Q."</td>
+            <td>A <strong>morphism</strong>: (P, Q) → P ∧ Q</td>
+          </tr>
+          <tr>
+            <td>Conjunction elimination</td>
+            <td>From "P and Q," extract P alone (or Q alone).</td>
+            <td>A <strong>morphism</strong>: P ∧ Q → P</td>
+          </tr>
+          <tr>
+            <td>Modus ponens</td>
+            <td>Given "If P then Q" and given P, conclude Q.</td>
+            <td>A <strong>morphism</strong>: (P → Q, P) → Q</td>
+          </tr>
+          <tr>
+            <td>Contrapositive</td>
+            <td>"If P then Q" is equivalent to "If not-Q then not-P." Always valid.</td>
+            <td>An <strong>isomorphism</strong>: (P → Q) ↔ (¬Q → ¬P)</td>
+          </tr>
+          <tr>
+            <td>Inference rule</td>
+            <td>Any rule that derives one proposition from others — the general category for conjunction elimination, modus ponens, etc.</td>
+            <td>A <strong>morphism</strong> in the logic category</td>
+          </tr>
+        </tbody>
+      </table>
+
       <p className="def-subsection-label">Derived concepts</p>
       <table className="def-table">
         <thead>
