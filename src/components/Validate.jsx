@@ -1,8 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Validate({ challenge, onComplete, onShowDiagram }) {
   const [answer, setAnswer] = useState(null) // "valid_AtoB" | "valid_BtoA" | "invalid"
   const [submitted, setSubmitted] = useState(false)
+
+  const options = [
+    { key: 'valid_AtoB', label: `Valid: ${challenge.objectA} → ${challenge.objectB}` },
+    { key: 'valid_BtoA', label: `Valid: ${challenge.objectB} → ${challenge.objectA}` },
+    { key: 'invalid', label: 'Not a valid morphism' },
+  ]
 
   const getCorrectAnswer = () => {
     if (!challenge.valid) return 'invalid'
@@ -25,6 +31,18 @@ export default function Validate({ challenge, onComplete, onShowDiagram }) {
     }
   }
 
+  useEffect(() => {
+    if (submitted) return
+    const handler = (e) => {
+      if (e.ctrlKey || e.metaKey || e.altKey) return
+      const n = parseInt(e.key)
+      if (n >= 1 && n <= options.length) setAnswer(options[n - 1].key)
+      if (e.key === 'Enter' && answer) handleSubmit()
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [submitted, answer]) // eslint-disable-line react-hooks/exhaustive-deps
+
   const correctAnswer = getCorrectAnswer()
   const isCorrect = submitted && answer === correctAnswer
 
@@ -39,11 +57,7 @@ export default function Validate({ challenge, onComplete, onShowDiagram }) {
       <p className="challenge-prompt">Is this morphism valid? If so, in which direction?</p>
 
       <div className="option-list">
-        {[
-          { key: 'valid_AtoB', label: `Valid: ${challenge.objectA} → ${challenge.objectB}` },
-          { key: 'valid_BtoA', label: `Valid: ${challenge.objectB} → ${challenge.objectA}` },
-          { key: 'invalid', label: 'Not a valid morphism' },
-        ].map(opt => (
+        {options.map((opt, i) => (
           <button
             key={opt.key}
             className={`option-btn ${answer === opt.key ? 'selected' : ''} ${
@@ -52,14 +66,14 @@ export default function Validate({ challenge, onComplete, onShowDiagram }) {
             onClick={() => !submitted && setAnswer(opt.key)}
             disabled={submitted}
           >
-            {opt.label}
+            <span className="key-hint-inline">{i + 1}</span> {opt.label}
           </button>
         ))}
       </div>
 
       {!submitted && (
         <button onClick={handleSubmit} disabled={!answer} className="submit-btn">
-          Check Answer
+          Check Answer <span className="key-hint-inline">↵</span>
         </button>
       )}
 

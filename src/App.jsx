@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import challenges from './data/challenges'
 import Classify from './components/Classify'
 import Validate from './components/Validate'
@@ -30,35 +30,81 @@ function shuffleArray(arr) {
   return shuffled
 }
 
+function getTier(h) {
+  if (!h) return 0;
+  if (!h.lastCorrect) return 1;
+  const acc = h.correct / h.attempts;
+  if (acc < 0.5) return 2;
+  if (h.attempts >= 3 && acc >= 0.8) return 4;
+  return 3;
+}
+
+function weightedShuffle(pool, history) {
+  const tiered = [[], [], [], [], []];
+  for (const c of pool) {
+    tiered[getTier(history[c.id])].push(c);
+  }
+  return tiered.flatMap(group => shuffleArray(group));
+}
+
+const TOTAL_CHALLENGES = Object.values(challenges).flat().length
+
 export default function App() {
   const [activeType, setActiveType] = useState(null)
   const [challengeIndex, setChallengeIndex] = useState(0)
-  const [completed, setCompleted] = useState({}) // { challengeId: true/false }
+  const [history, setHistory] = useState({})
+  const [streak, setStreak] = useState(0)
   const [showDiagram, setShowDiagram] = useState(null)
   const [shuffledChallenges, setShuffledChallenges] = useState({})
 
+  // Derive completed from history so existing rendering code is unchanged
+  const completed = Object.fromEntries(
+    Object.entries(history).map(([id, h]) => [id, h.lastCorrect])
+  )
+
+  // Mount hydration
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('ct-trainer-v1') || '{}');
+      if (saved.history) setHistory(saved.history);
+      if (typeof saved.streak === 'number') setStreak(saved.streak);
+    } catch (_) {}
+  }, []);
+
   const getChallenges = useCallback((typeKey) => {
-    if (!shuffledChallenges[typeKey]) {
-      const shuffled = shuffleArray(challenges[typeKey] || [])
-      setShuffledChallenges(prev => ({ ...prev, [typeKey]: shuffled }))
-      return shuffled
-    }
-    return shuffledChallenges[typeKey]
+    return shuffledChallenges[typeKey] || []
   }, [shuffledChallenges])
 
   const handleSelectType = (typeKey) => {
+    const shuffled = weightedShuffle(challenges[typeKey] || [], history)
+    setShuffledChallenges(prev => ({ ...prev, [typeKey]: shuffled }))
     setActiveType(typeKey)
     setChallengeIndex(0)
     setShowDiagram(null)
-    getChallenges(typeKey) // ensure shuffled
   }
 
-  const handleComplete = (challengeId, correct) => {
-    setCompleted(prev => ({ ...prev, [challengeId]: correct }))
-  }
+  const handleComplete = useCallback((id, correct) => {
+    setHistory(prev => {
+      const entry = prev[id] ?? { attempts: 0, correct: 0, lastSeen: 0, lastCorrect: false };
+      const next = {
+        ...prev,
+        [id]: {
+          attempts: entry.attempts + 1,
+          correct: entry.correct + (correct ? 1 : 0),
+          lastSeen: Date.now(),
+          lastCorrect: correct,
+        }
+      };
+      setStreak(s => {
+        const newStreak = correct ? s + 1 : 0;
+        localStorage.setItem('ct-trainer-v1', JSON.stringify({ history: next, streak: newStreak }));
+        return newStreak;
+      });
+      return next;
+    });
+  }, []);
 
-  const handleNext = () => {
-    const pool = getChallenges(activeType)
+  const handleNext = (pool) => {
     if (challengeIndex < pool.length - 1) {
       setChallengeIndex(i => i + 1)
       setShowDiagram(null)
@@ -78,9 +124,18 @@ export default function App() {
     setShowDiagram(null)
   }
 
+  const handleReset = () => {
+    if (!confirm('Reset all progress and streaks?')) return
+    localStorage.removeItem('ct-trainer-v1')
+    setHistory({})
+    setStreak(0)
+    setShuffledChallenges({})
+  }
+
   // Stats
   const totalCompleted = Object.keys(completed).length
   const totalCorrect = Object.values(completed).filter(Boolean).length
+  const accuracy = totalCompleted > 0 ? Math.round(totalCorrect / totalCompleted * 100) : 0
 
   // Main menu
   if (!activeType) {
@@ -90,7 +145,13 @@ export default function App() {
           <h1>Category Theory Trainer</h1>
           <p className="subtitle">Build intuition through practice. Objects, morphisms, composition, functors.</p>
           {totalCompleted > 0 && (
-            <p className="stats">{totalCorrect}/{totalCompleted} correct across all challenges</p>
+            <div className="stats-row">
+              <span className="stats">Completed: {totalCompleted} / {TOTAL_CHALLENGES} · Accuracy: {accuracy}%</span>
+              {streak >= 2 && <span className="streak-badge">🔥 {streak} streak</span>}
+            </div>
+          )}
+          {totalCompleted > 0 && (
+            <button className="reset-btn" onClick={handleReset}>Reset progress</button>
           )}
         </header>
         <div className="type-grid">
@@ -98,6 +159,7 @@ export default function App() {
             const pool = challenges[ct.key] || []
             const done = pool.filter(c => completed[c.id] !== undefined).length
             const correct = pool.filter(c => completed[c.id] === true).length
+            const acc = done > 0 ? Math.round(correct / done * 100) : null
             return (
               <button
                 key={ct.key}
@@ -108,7 +170,7 @@ export default function App() {
                 <span className="type-label">{ct.label}</span>
                 <span className="type-desc">{ct.desc}</span>
                 {done > 0 && (
-                  <span className="type-progress">{correct}/{done} · {pool.length} total</span>
+                  <span className="type-progress">{correct}/{done} · {acc}%</span>
                 )}
                 {done === 0 && (
                   <span className="type-progress">{pool.length} challenges</span>
@@ -134,6 +196,11 @@ export default function App() {
         <p>No challenges available for this type.</p>
       </div>
     )
+  }
+
+  const handleMarkKnown = () => {
+    handleComplete(current.id, true)
+    handleNext(pool)
   }
 
   return (
@@ -165,7 +232,10 @@ export default function App() {
 
       <div className="challenge-nav">
         <button onClick={handlePrev} disabled={challengeIndex === 0} className="nav-btn">← Previous</button>
-        <button onClick={handleNext} disabled={challengeIndex >= pool.length - 1} className="nav-btn">Next →</button>
+        <button className="mark-known-btn" onClick={handleMarkKnown} title="Mark correct and skip">
+          ✓ Mark as known
+        </button>
+        <button onClick={() => handleNext(pool)} disabled={challengeIndex >= pool.length - 1} className="nav-btn">Next →</button>
       </div>
     </div>
   )

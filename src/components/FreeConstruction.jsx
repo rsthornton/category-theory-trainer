@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function FreeConstruction({ challenge, onComplete, onShowDiagram }) {
   const [currentStep, setCurrentStep] = useState(0)
@@ -32,7 +32,6 @@ export default function FreeConstruction({ challenge, onComplete, onShowDiagram 
   const isLastStep = currentStep === steps.length - 1
 
   const handleFinish = () => {
-    // Score it
     const correctCount = steps.reduce((count, s, i) => {
       return count + (s.options[answers[i]] === s.answer ? 1 : 0)
     }, 0)
@@ -48,6 +47,21 @@ export default function FreeConstruction({ challenge, onComplete, onShowDiagram 
       isIso: challenge.authorAnalysis.isIso,
     })
   }
+
+  useEffect(() => {
+    if (showAuthor) return
+    const handler = (e) => {
+      if (e.ctrlKey || e.metaKey || e.altKey) return
+      const n = parseInt(e.key)
+      if (n >= 1 && n <= step.options.length) handleSelect(n - 1)
+      if (e.key === 'Enter' && selectedForStep !== null) {
+        if (isLastStep) handleFinish()
+        else handleNext()
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [showAuthor, currentStep, selectedForStep]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="freecon-challenge">
@@ -72,20 +86,15 @@ export default function FreeConstruction({ challenge, onComplete, onShowDiagram 
         <div className="freecon-step">
           <p className="challenge-prompt">{step.question}</p>
           <div className="option-list">
-            {step.options.map((opt, i) => {
-              const isSelected = selectedForStep === i
-              const isCorrectOpt = opt === step.answer
-              const showResult = showAuthor
-              return (
-                <button
-                  key={i}
-                  className={`option-btn ${isSelected ? 'selected' : ''}`}
-                  onClick={() => handleSelect(i)}
-                >
-                  {opt}
-                </button>
-              )
-            })}
+            {step.options.map((opt, i) => (
+              <button
+                key={i}
+                className={`option-btn ${selectedForStep === i ? 'selected' : ''}`}
+                onClick={() => handleSelect(i)}
+              >
+                <span className="key-hint-inline">{i + 1}</span> {opt}
+              </button>
+            ))}
           </div>
 
           <div className="freecon-nav">
@@ -94,12 +103,12 @@ export default function FreeConstruction({ challenge, onComplete, onShowDiagram 
             )}
             {!isLastStep && (
               <button className="submit-btn" onClick={handleNext} disabled={selectedForStep === null}>
-                Next →
+                Next → <span className="key-hint-inline">↵</span>
               </button>
             )}
             {isLastStep && selectedForStep !== null && (
               <button className="submit-btn" onClick={handleFinish}>
-                See Analysis
+                See Analysis <span className="key-hint-inline">↵</span>
               </button>
             )}
           </div>

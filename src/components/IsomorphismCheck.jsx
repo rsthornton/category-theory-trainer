@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function IsomorphismCheck({ challenge, onComplete, onShowDiagram }) {
   const [answer, setAnswer] = useState(null) // "iso" | "not_iso"
@@ -24,6 +24,18 @@ export default function IsomorphismCheck({ challenge, onComplete, onShowDiagram 
     }
   }
 
+  useEffect(() => {
+    if (submitted) return
+    const handler = (e) => {
+      if (e.ctrlKey || e.metaKey || e.altKey) return
+      if (e.key === '1') setAnswer('iso')
+      if (e.key === '2') setAnswer('not_iso')
+      if (e.key === 'Enter' && answer) handleSubmit()
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [submitted, answer]) // eslint-disable-line react-hooks/exhaustive-deps
+
   const isCorrect = submitted && answer === correctAnswer
 
   return (
@@ -47,7 +59,7 @@ export default function IsomorphismCheck({ challenge, onComplete, onShowDiagram 
           onClick={() => !submitted && setAnswer('iso')}
           disabled={submitted}
         >
-          <strong>Isomorphism</strong> — a reverse morphism exists, no information is lost
+          <span className="key-hint-inline">1</span> <strong>Isomorphism</strong> — a reverse morphism exists, no information is lost
         </button>
         <button
           className={`option-btn ${answer === 'not_iso' ? 'selected' : ''} ${
@@ -56,13 +68,13 @@ export default function IsomorphismCheck({ challenge, onComplete, onShowDiagram 
           onClick={() => !submitted && setAnswer('not_iso')}
           disabled={submitted}
         >
-          <strong>Not an isomorphism</strong> — the morphism is one-way, information is lost
+          <span className="key-hint-inline">2</span> <strong>Not an isomorphism</strong> — the morphism is one-way, information is lost
         </button>
       </div>
 
       {!submitted && (
         <button onClick={handleSubmit} disabled={!answer} className="submit-btn">
-          Check Answer
+          Check Answer <span className="key-hint-inline">↵</span>
         </button>
       )}
 

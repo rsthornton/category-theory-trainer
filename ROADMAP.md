@@ -5,6 +5,7 @@
 All 8 challenge types are fully playable with SVG commutative diagrams rendered
 after each answer. Diagrams follow tikz-cd conventions: stealth arrowheads,
 geometric layouts (commutative triangles for composition), no flowchart boxes.
+- localStorage persistence (history, streak, accuracy) and spaced-repetition weighting are now implemented.
 
 ---
 
@@ -79,8 +80,8 @@ These can be done without any new dependencies:
   adjunctions, monads
 - **More domains**: Music theory (transposition), programming (type functions),
   chemistry (reaction networks), economics (preference orderings)
-- **Difficulty scaling**: Track per-type accuracy and weight challenge selection
-  toward weak spots (spaced repetition)
+- ~~**Difficulty scaling**: Track per-type accuracy and weight challenge selection
+  toward weak spots (spaced repetition)~~
 - **API-generated challenges**: Use Claude API with the existing schema to
   generate unlimited domain-specific variations
 
@@ -88,6 +89,6 @@ These can be done without any new dependencies:
 
 ## Infrastructure
 
-- **Persistence**: localStorage for progress, streaks, accuracy per type
+- ~~**Persistence**: localStorage for progress, streaks, accuracy per type~~
 - **Export**: Download current diagram as SVG or PNG
 - **Sharing**: URL-encoded challenge state so you can link to a specific challenge

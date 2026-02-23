@@ -189,6 +189,145 @@ const challenges = {
       ],
       explanation: "Life stages are objects. Biological processes that advance from one stage to the next are morphisms."
     },
+
+    // --- MORE COOKING ---
+    {
+      id: "cl-cook-05",
+      type: "classify",
+      domain: "cooking",
+      difficulty: 1,
+      prompt: "Sort these butter-related terms into objects (states) and morphisms (operations).",
+      words: [
+        { word: "Cold butter", kind: "object" },
+        { word: "Melt", kind: "morphism" },
+        { word: "Melted butter", kind: "object" },
+        { word: "Brown", kind: "morphism" },
+        { word: "Browned butter", kind: "object" },
+        { word: "Cool and whip", kind: "morphism" },
+        { word: "Whipped butter", kind: "object" },
+      ],
+      explanation: "Each form of butter (cold, melted, browned, whipped) is an object — a stable state. Melt, brown, and whip are morphisms — operations that transform one state into another."
+    },
+    {
+      id: "cl-cook-06",
+      type: "classify",
+      domain: "cooking",
+      difficulty: 2,
+      prompt: "Sort these. Warning: 'brine' appears as both a noun and a verb.",
+      words: [
+        { word: "Whole chicken", kind: "object" },
+        { word: "Brine solution (noun)", kind: "object" },
+        { word: "Brine (verb: soak in salt water)", kind: "morphism" },
+        { word: "Brined chicken", kind: "object" },
+        { word: "Roast", kind: "morphism" },
+        { word: "Roasted chicken", kind: "object" },
+      ],
+      explanation: "A brine solution is an object — a thing that exists. To brine (verb) is a morphism — an operation. This ambiguity is common: the same word can be a state or a transformation depending on grammatical role."
+    },
+    {
+      id: "cl-cook-07",
+      type: "classify",
+      domain: "cooking",
+      difficulty: 3,
+      prompt: "Pastry terms. Use the test: can it sit on a plate? Object. Does it require active transformation? Morphism.",
+      words: [
+        { word: "Couverture chocolate", kind: "object" },
+        { word: "Temper (stabilize crystal form)", kind: "morphism" },
+        { word: "Tempered chocolate", kind: "object" },
+        { word: "Ganache", kind: "object" },
+        { word: "Emulsify cream into chocolate", kind: "morphism" },
+        { word: "Enrobe (coat with chocolate)", kind: "morphism" },
+        { word: "Chocolate truffle", kind: "object" },
+      ],
+      explanation: "Couverture, tempered chocolate, ganache, and the final truffle are all objects — states of matter. Tempering, emulsifying, and enrobing are morphisms — processes. Difficulty: 'temper' as a noun (a property) could seem like an object, but here it is the verb form (the operation)."
+    },
+
+    // --- MORE LOGIC ---
+    {
+      id: "cl-logic-04",
+      type: "classify",
+      domain: "logic",
+      difficulty: 1,
+      prompt: "Sort these from a category of propositions and inference rules.",
+      words: [
+        { word: "Snow is white", kind: "object" },
+        { word: "Grass is green", kind: "object" },
+        { word: "Conjunction introduction", kind: "morphism" },
+        { word: "Snow is white and grass is green", kind: "object" },
+        { word: "Simplification (drop a conjunct)", kind: "morphism" },
+        { word: "Modus ponens", kind: "morphism" },
+      ],
+      explanation: "Propositions (statements that can be true or false) are objects. Inference rules — conjunction introduction, simplification, modus ponens — are morphisms that derive one proposition from others."
+    },
+    {
+      id: "cl-logic-05",
+      type: "classify",
+      domain: "logic",
+      difficulty: 2,
+      prompt: "Sort these from a category of mathematical statements and proof techniques.",
+      words: [
+        { word: "n is even", kind: "object" },
+        { word: "n = 2k for some integer k", kind: "object" },
+        { word: "Substitute definition of even", kind: "morphism" },
+        { word: "n² = 4k²", kind: "object" },
+        { word: "Algebraic expansion", kind: "morphism" },
+        { word: "n² is even", kind: "object" },
+        { word: "Proof by induction", kind: "morphism" },
+      ],
+      explanation: "Mathematical statements ('n is even', 'n=2k') are objects. Substitution, algebraic expansion, and induction are morphisms — they transform one statement into another by a valid reasoning step."
+    },
+
+    // --- MORE FAMILY / BIOLOGY ---
+    {
+      id: "cl-fam-04",
+      type: "classify",
+      domain: "family",
+      difficulty: 1,
+      prompt: "Sort these from the lifecycle of a butterfly.",
+      words: [
+        { word: "Egg", kind: "object" },
+        { word: "Hatching", kind: "morphism" },
+        { word: "Larva (caterpillar)", kind: "object" },
+        { word: "Pupation", kind: "morphism" },
+        { word: "Pupa (chrysalis)", kind: "object" },
+        { word: "Eclosion (emergence)", kind: "morphism" },
+        { word: "Adult butterfly", kind: "object" },
+      ],
+      explanation: "Each life stage (egg, larva, pupa, adult) is an object — a biological state. Each transition event (hatching, pupation, eclosion) is a morphism — the process that advances from one stage to the next."
+    },
+    {
+      id: "cl-fam-05",
+      type: "classify",
+      domain: "family",
+      difficulty: 2,
+      prompt: "Sort these from a category of evolutionary processes.",
+      words: [
+        { word: "Common ancestor species", kind: "object" },
+        { word: "Natural selection", kind: "morphism" },
+        { word: "Isolated population", kind: "object" },
+        { word: "Genetic mutation", kind: "morphism" },
+        { word: "Derived species", kind: "object" },
+        { word: "Speciation", kind: "morphism" },
+      ],
+      explanation: "Species and populations are objects — the entities the category is about. Natural selection, mutation, and speciation are morphisms — processes that transform one evolutionary state into another."
+    },
+    {
+      id: "cl-fam-06",
+      type: "classify",
+      domain: "family",
+      difficulty: 2,
+      prompt: "In a category of family relationships, sort these. Some are tricky.",
+      words: [
+        { word: "Alice", kind: "object" },
+        { word: "Bob", kind: "object" },
+        { word: "Is the parent of", kind: "morphism" },
+        { word: "The Smith family", kind: "object" },
+        { word: "Shares DNA with", kind: "morphism" },
+        { word: "Biological descent", kind: "morphism" },
+        { word: "Kinship (the directed relation)", kind: "morphism" },
+      ],
+      explanation: "People and groups are objects. 'Is the parent of,' 'shares DNA with,' 'biological descent,' and 'kinship' are all morphisms — directed relationships connecting objects. Tricky: 'kinship' sounds like a thing, but here it refers to the relational structure (a morphism class), not a family member (an object)."
+    },
   ],
 
   // ============================================================
@@ -1003,6 +1142,286 @@ const challenges = {
       synthesisQuestion: "Do all three morphisms compose the same way?",
       synthesisAnswer: "No. Biological stages compose sequentially (seed → sapling → tree). Carbon sequestration composes additively (sum of CO₂ per year). Economic value does not compose cleanly at all — a sapling is not worth half a tree. This shows that composition rules differ across categories."
     },
+    {
+      id: "cs-06",
+      type: "category_switch",
+      domain: "cooking",
+      difficulty: 1,
+      objectA: "Raw dough",
+      objectB: "Baked bread",
+      prompt: "The same transformation viewed through three different categorical lenses.",
+      categories: [
+        {
+          name: "Category of cooking operations",
+          morphism: "Bake at 400°F for 30 minutes",
+          explanation: "The morphism is a concrete kitchen action with time and temperature parameters."
+        },
+        {
+          name: "Category of gluten and starch chemistry",
+          morphism: "Gelatinize starch, set gluten network, evaporate water",
+          explanation: "The morphism describes the molecular changes: starch granules absorb water and swell, gluten proteins cross-link, moisture escapes as steam."
+        },
+        {
+          name: "Category of aroma chemistry",
+          morphism: "Maillard reaction and caramelization produce hundreds of volatile compounds",
+          explanation: "The morphism is the set of browning reactions that generate bread's characteristic smell and crust color."
+        }
+      ],
+      synthesisQuestion: "Is this transformation reversible in any of these categories?",
+      synthesisAnswer: "No. In all three categories the morphism is one-way: protein cross-links cannot be broken, Maillard products cannot be reversed, and a baked loaf cannot return to dough. The three categories agree that this is not an isomorphism."
+    },
+    {
+      id: "cs-07",
+      type: "category_switch",
+      domain: "logic",
+      difficulty: 1,
+      objectA: "True",
+      objectB: "False",
+      prompt: "The same two truth values in three different formalisms.",
+      categories: [
+        {
+          name: "Category of classical logic",
+          morphism: "Negation (NOT)",
+          explanation: "In classical logic, the morphism is the NOT operator: True ↦ False."
+        },
+        {
+          name: "Category of Boolean algebra",
+          morphism: "Complement",
+          explanation: "In Boolean algebra, every element has a complement: 1's complement is 0."
+        },
+        {
+          name: "Category of digital circuits",
+          morphism: "Inverter gate (NOT gate)",
+          explanation: "In circuit logic, the morphism is a physical gate that flips a high voltage to low."
+        }
+      ],
+      synthesisQuestion: "Is this morphism an isomorphism in all three categories?",
+      synthesisAnswer: "Yes. Negation applied twice returns to the original: NOT(NOT(True)) = True. The inverse morphism is negation itself. All three formalisms agree — this is an isomorphism, and in fact it is its own inverse."
+    },
+    {
+      id: "cs-08",
+      type: "category_switch",
+      domain: "family",
+      difficulty: 2,
+      objectA: "Parent",
+      objectB: "Child",
+      prompt: "The same relationship viewed in three different categories.",
+      categories: [
+        {
+          name: "Category of kinship relations",
+          morphism: "Is the parent of",
+          explanation: "The morphism is the directed familial relation. A reverse morphism ('is the child of') also exists, but it is a different morphism, not an inverse."
+        },
+        {
+          name: "Category of genetic inheritance",
+          morphism: "Passes half their genome to (via meiosis and fertilization)",
+          explanation: "The morphism is the biological transmission of genetic material. Information flows from parent to child, not the other way around."
+        },
+        {
+          name: "Category of legal rights",
+          morphism: "Is the legal guardian of (during minority)",
+          explanation: "The morphism is a legal relationship that carries duties and rights. It dissolves when the child reaches adulthood."
+        }
+      ],
+      synthesisQuestion: "Is the parent-child morphism an isomorphism in any of these categories?",
+      synthesisAnswer: "No. In kinship, a reverse arrow exists ('child of') but it is not an inverse — it is a separate morphism in a different direction. In genetics, half-genome transmission cannot be undone. In law, the guardianship morphism is temporary and asymmetric. None are isomorphisms."
+    },
+    {
+      id: "cs-09",
+      type: "category_switch",
+      domain: "cooking",
+      difficulty: 2,
+      objectA: "Milk",
+      objectB: "Yogurt",
+      prompt: "The same fermentation event described in three different categories.",
+      categories: [
+        {
+          name: "Category of fermentation processes",
+          morphism: "Incubate with Lactobacillus cultures at 40°C for 8 hours",
+          explanation: "The morphism is the process specification: which bacteria, which temperature, how long."
+        },
+        {
+          name: "Category of pH transformations",
+          morphism: "Lower pH from ~6.8 to ~4.5 (increase acidity)",
+          explanation: "The morphism is quantified as a change in hydrogen ion concentration. Lactic acid production acidifies the milk."
+        },
+        {
+          name: "Category of protein structure",
+          morphism: "Acid-denature casein proteins to form a gel network",
+          explanation: "The morphism is a structural change: dissolved casein micelles coagulate into a semi-solid matrix when the pH drops below their isoelectric point."
+        }
+      ],
+      synthesisQuestion: "Do these three morphisms describe the same process?",
+      synthesisAnswer: "Yes — they are three different categorical lenses on the same event. The fermentation morphism describes procedure, the pH morphism describes measurement, and the protein morphism describes mechanism. All three compose with the same other morphisms (you can chain yogurt → strained yogurt → Greek yogurt consistently across all three categories)."
+    },
+    {
+      id: "cs-10",
+      type: "category_switch",
+      domain: "logic",
+      difficulty: 2,
+      objectA: "Hypothesis",
+      objectB: "Prediction",
+      prompt: "The same two objects connected differently in three categories of scientific reasoning.",
+      categories: [
+        {
+          name: "Category of deductive inference",
+          morphism: "Deduce observable consequence (if hypothesis is true, prediction must hold)",
+          explanation: "Given a hypothesis and auxiliary conditions, deduce what must be observable. This is a valid deductive step."
+        },
+        {
+          name: "Category of probability theory",
+          morphism: "Compute P(prediction | hypothesis) — likelihood of the prediction given the hypothesis",
+          explanation: "The morphism is a conditional probability: how likely is the prediction if the hypothesis holds? This is a quantitative version of the deductive arrow."
+        },
+        {
+          name: "Category of experimental design",
+          morphism: "Design experiment whose outcome distinguishes hypothesis from alternatives",
+          explanation: "The morphism is an experimental protocol — a concrete procedure that operationalizes the prediction into a measurable test."
+        }
+      ],
+      synthesisQuestion: "Is this an isomorphism in any category?",
+      synthesisAnswer: "No. Many different hypotheses entail the same prediction (prediction underdetermines hypothesis). The reverse morphism — from prediction back to hypothesis — is not uniquely defined. This asymmetry is the core of the 'problem of induction': you cannot prove a hypothesis by confirming its predictions."
+    },
+    {
+      id: "cs-11",
+      type: "category_switch",
+      domain: "family",
+      difficulty: 2,
+      objectA: "Larva",
+      objectB: "Adult insect",
+      prompt: "The same metamorphosis in three different categories.",
+      categories: [
+        {
+          name: "Category of biological development",
+          morphism: "Complete metamorphosis (holometabolism) — body dissolves and rebuilds in chrysalis",
+          explanation: "The biological morphism is drastic: the larval body is largely dissolved into a cellular soup, and the adult body plan is rebuilt from imaginal discs."
+        },
+        {
+          name: "Category of genetic expression",
+          morphism: "Re-express the same genome in a radically different phenotype",
+          explanation: "The DNA is identical across both stages. The morphism is a change in gene expression — different genes are activated at different developmental stages."
+        },
+        {
+          name: "Category of ecological role",
+          morphism: "Shift from herbivorous terrestrial organism to flying reproductive organism",
+          explanation: "The morphism is a change in ecological function: the caterpillar eats and grows, the butterfly reproduces and disperses."
+        }
+      ],
+      synthesisQuestion: "Which category makes this most like an isomorphism?",
+      synthesisAnswer: "The genetic expression category. The genome is fully preserved — the same information, expressed differently. In this sense the morphism is close to an isomorphism: larva and adult are like two 'views' of the same underlying data. In biology and ecology, however, the transformation is highly one-way."
+    },
+    {
+      id: "cs-12",
+      type: "category_switch",
+      domain: "cooking",
+      difficulty: 1,
+      objectA: "Grape juice",
+      objectB: "Wine",
+      prompt: "The same fermentation in three different categories.",
+      categories: [
+        {
+          name: "Category of fermentation chemistry",
+          morphism: "Yeast consume sugars and produce ethanol and CO₂ over days to weeks",
+          explanation: "C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂. The morphism is a biochemical reaction with precise reactants and products."
+        },
+        {
+          name: "Category of flavor development",
+          morphism: "Develop esters, tannins, and complexity; consume sweetness",
+          explanation: "The morphism is perceived as a transformation of taste: sweet → dry, simple → complex."
+        },
+        {
+          name: "Category of commerce and regulation",
+          morphism: "Process, clarify, barrel-age, bottle, label, and distribute as regulated product",
+          explanation: "The morphism is an industrial and legal process. 'Wine' is a legally defined category that grape juice cannot enter without specific production steps."
+        }
+      ],
+      synthesisQuestion: "Is fermentation reversible in any of these categories?",
+      synthesisAnswer: "No. Ethanol cannot be enzymatically re-converted to glucose by yeast. The flavor morphism is irreversible (you cannot un-ferment a wine). The commercial morphism is also one-way — a product released to market cannot be recalled to the raw stage. All three categories agree: no isomorphism."
+    },
+    {
+      id: "cs-13",
+      type: "category_switch",
+      domain: "logic",
+      difficulty: 3,
+      objectA: "Set of observations",
+      objectB: "Scientific theory",
+      prompt: "Three different categories disagree about whether a morphism even exists here.",
+      categories: [
+        {
+          name: "Category of abductive inference",
+          morphism: "Infer best explanation — select theory that most elegantly accounts for all observations",
+          explanation: "Abduction is the 'inference to best explanation.' It is not deductively valid, but it is the method scientists actually use."
+        },
+        {
+          name: "Category of deductive logic",
+          morphism: "No valid morphism — observations do not deductively entail any theory",
+          explanation: "This is Hume's problem of induction. No finite set of observations logically forces a particular theory. The morphism from observations to theory does not exist in deductive logic."
+        },
+        {
+          name: "Category of Bayesian inference",
+          morphism: "Update prior probability on theory given observations via Bayes' rule",
+          explanation: "P(theory | observations) = P(observations | theory) · P(theory) / P(observations). The morphism is a probability update, not a definitive proof."
+        }
+      ],
+      synthesisQuestion: "Why is the deductive morphism missing?",
+      synthesisAnswer: "Because observations underdetermine theory. Infinitely many different theories are compatible with any finite set of observations. Deductive logic can only derive specific predictions from a theory (the reverse direction); it cannot derive a unique theory from predictions. This is why science uses abduction or probability, not pure deduction."
+    },
+    {
+      id: "cs-14",
+      type: "category_switch",
+      domain: "family",
+      difficulty: 1,
+      objectA: "Sibling A",
+      objectB: "Sibling B",
+      prompt: "The same relationship viewed in three categories.",
+      categories: [
+        {
+          name: "Category of kinship relations",
+          morphism: "Is the sibling of (symmetric — the reverse holds equally)",
+          explanation: "Siblinghood is a symmetric relation: if A is a sibling of B, then B is a sibling of A. This symmetry makes it look like an isomorphism."
+        },
+        {
+          name: "Category of genetic inheritance",
+          morphism: "Shares ~50% identical-by-descent DNA segments",
+          explanation: "Full siblings share, on average, 50% of their DNA. This is also symmetric and quantitative."
+        },
+        {
+          name: "Category of social dynamics",
+          morphism: "Competes for parental resources and cooperates in coalition (asymmetric in practice)",
+          explanation: "In practice, social sibling relationships can be highly asymmetric: one sibling may dominate, older siblings have more authority, etc."
+        }
+      ],
+      synthesisQuestion: "In which category is the sibling morphism closest to an isomorphism?",
+      synthesisAnswer: "In kinship and genetics: both are symmetric, so A→B and B→A exist and compose to the identity. In social dynamics, the relationship can be asymmetric, so no clean isomorphism holds. This shows that the same objects can be isomorphic in one category but not in another."
+    },
+    {
+      id: "cs-15",
+      type: "category_switch",
+      domain: "mixed",
+      difficulty: 2,
+      objectA: "Sound wave",
+      objectB: "Digital audio file",
+      prompt: "Three ways to understand the morphism from sound to digital audio.",
+      categories: [
+        {
+          name: "Category of signal processing",
+          morphism: "Sample at 44.1 kHz and quantize to 16-bit integers",
+          explanation: "The morphism is defined by two parameters: the sampling rate (how often per second we measure) and the bit depth (how precisely we record each measurement)."
+        },
+        {
+          name: "Category of physics",
+          morphism: "Transduce continuous air pressure variations into a discrete numerical sequence",
+          explanation: "The morphism is a physical transduction: a microphone converts mechanical vibration to electrical voltage, which an ADC then converts to numbers."
+        },
+        {
+          name: "Category of information theory",
+          morphism: "Approximate a continuous signal with a finite-bandwidth representation at bounded precision",
+          explanation: "By the Nyquist theorem, sampling at 44.1 kHz captures all frequencies below 22.05 kHz — above human hearing. Information above that threshold is lost."
+        }
+      ],
+      synthesisQuestion: "Is digitization an isomorphism?",
+      synthesisAnswer: "Approximately, for human listeners — at 44.1 kHz / 16-bit, the reconstruction is perceptually lossless (humans cannot hear the difference). But mathematically, quantization always loses some information: the continuous original cannot be recovered exactly from a discrete sample. It is an approximate isomorphism — good enough for practice, not perfect in theory."
+    },
   ],
 
   // ============================================================
@@ -1263,6 +1682,325 @@ const challenges = {
         morphisms: { "dogs are mammals": "⊆", "mammals are animals": "⊆" }
       },
       explanation: "The functor maps propositions to the sets of things satisfying them, and logical implications to subset inclusions. 'Dogs are mammals' (a proof) maps to Dogs ⊆ Mammals (a set inclusion). Structure is preserved: if A implies B and B implies C, then A ⊆ B ⊆ C."
+    },
+    {
+      id: "fu-05",
+      type: "functor_match",
+      domain: "cooking",
+      difficulty: 1,
+      prompt: "Map each food state to its safe storage temperature range, and each operation to the temperature change it represents.",
+      categoryA: {
+        name: "𝒞: Food storage states",
+        objects: ["Frozen meat", "Refrigerated meat", "Cooked meat"],
+        morphisms: [
+          { from: "Frozen meat", to: "Refrigerated meat", label: "thaw in fridge" },
+          { from: "Refrigerated meat", to: "Cooked meat", label: "heat to safe temp" }
+        ]
+      },
+      categoryB: {
+        name: "𝒟: Temperature categories",
+        objects: ["Below −10°C", "1–4°C", "Above 70°C"],
+        morphisms: [
+          { from: "Below −10°C", to: "1–4°C", label: "raise above freezing" },
+          { from: "1–4°C", to: "Above 70°C", label: "raise to cooking temp" }
+        ]
+      },
+      correctMapping: {
+        objects: { "Frozen meat": "Below −10°C", "Refrigerated meat": "1–4°C", "Cooked meat": "Above 70°C" },
+        morphisms: { "thaw in fridge": "raise above freezing", "heat to safe temp": "raise to cooking temp" }
+      },
+      explanation: "The temperature functor maps food safety states to temperature ranges, and food handling operations to temperature changes. Composition is preserved: thaw then heat = go from frozen to cooked, which matches raise above freezing then raise to cooking temp."
+    },
+    {
+      id: "fu-06",
+      type: "functor_match",
+      domain: "family",
+      difficulty: 1,
+      prompt: "Map each life stage to its generation number, and each transition to the corresponding arrow.",
+      categoryA: {
+        name: "𝒞: Family tree",
+        objects: ["Grandparent", "Parent", "Child"],
+        morphisms: [
+          { from: "Grandparent", to: "Parent", label: "is parent of" },
+          { from: "Parent", to: "Child", label: "is parent of" }
+        ]
+      },
+      categoryB: {
+        name: "𝒟: Generation numbers",
+        objects: ["Gen 1", "Gen 2", "Gen 3"],
+        morphisms: [
+          { from: "Gen 1", to: "Gen 2", label: "next generation" },
+          { from: "Gen 2", to: "Gen 3", label: "next generation" }
+        ]
+      },
+      correctMapping: {
+        objects: { "Grandparent": "Gen 1", "Parent": "Gen 2", "Child": "Gen 3" },
+        morphisms: { "is parent of": "next generation" }
+      },
+      explanation: "The generation functor maps family members to numbered generations and the 'is parent of' relation to 'next generation.' Both morphisms in 𝒞 share the same label, so both map to the single morphism in 𝒟. Composition is preserved: grandparent → parent → child maps to Gen 1 → Gen 2 → Gen 3."
+    },
+    {
+      id: "fu-07",
+      type: "functor_match",
+      domain: "cooking",
+      difficulty: 2,
+      prompt: "Map the bread-making stages to their dominant chemical phase, and each operation to the corresponding transformation.",
+      categoryA: {
+        name: "𝒞: Bread-making stages",
+        objects: ["Flour + water + yeast", "Dough", "Risen dough", "Bread"],
+        morphisms: [
+          { from: "Flour + water + yeast", to: "Dough", label: "knead" },
+          { from: "Dough", to: "Risen dough", label: "proof" },
+          { from: "Risen dough", to: "Bread", label: "bake" }
+        ]
+      },
+      categoryB: {
+        name: "𝒟: Chemical phases",
+        objects: ["Dry mixture", "Hydrated gluten network", "CO₂-expanded network", "Gelatinized starch"],
+        morphisms: [
+          { from: "Dry mixture", to: "Hydrated gluten network", label: "hydrate and cross-link" },
+          { from: "Hydrated gluten network", to: "CO₂-expanded network", label: "ferment" },
+          { from: "CO₂-expanded network", to: "Gelatinized starch", label: "set by heat" }
+        ]
+      },
+      correctMapping: {
+        objects: {
+          "Flour + water + yeast": "Dry mixture",
+          "Dough": "Hydrated gluten network",
+          "Risen dough": "CO₂-expanded network",
+          "Bread": "Gelatinized starch"
+        },
+        morphisms: { "knead": "hydrate and cross-link", "proof": "ferment", "bake": "set by heat" }
+      },
+      explanation: "The chemistry functor maps each bread stage to its molecular structure and each kitchen operation to the chemical transformation it causes. Composition is fully preserved: the sequence knead → proof → bake corresponds exactly to hydrate → ferment → set by heat."
+    },
+    {
+      id: "fu-08",
+      type: "functor_match",
+      domain: "logic",
+      difficulty: 2,
+      prompt: "Map the implication chain to the subset chain, and each proof step to its set-theoretic counterpart.",
+      categoryA: {
+        name: "𝒞: Propositions about Fido",
+        objects: ["Fido is a poodle", "Fido is a dog", "Fido is an animal"],
+        morphisms: [
+          { from: "Fido is a poodle", to: "Fido is a dog", label: "poodles are dogs" },
+          { from: "Fido is a dog", to: "Fido is an animal", label: "dogs are animals" }
+        ]
+      },
+      categoryB: {
+        name: "𝒟: Sets of individuals",
+        objects: ["Poodles", "Dogs", "Animals"],
+        morphisms: [
+          { from: "Poodles", to: "Dogs", label: "⊂" },
+          { from: "Dogs", to: "Animals", label: "⊂" }
+        ]
+      },
+      correctMapping: {
+        objects: { "Fido is a poodle": "Poodles", "Fido is a dog": "Dogs", "Fido is an animal": "Animals" },
+        morphisms: { "poodles are dogs": "⊂", "dogs are animals": "⊂" }
+      },
+      explanation: "Each proposition 'x is a P' maps to the set of all Ps. Each logical implication 'all Ps are Qs' maps to the subset inclusion P ⊂ Q. Composition is preserved: poodles ⊂ dogs and dogs ⊂ animals implies poodles ⊂ animals, matching the composed implication."
+    },
+    {
+      id: "fu-09",
+      type: "functor_match",
+      domain: "family",
+      difficulty: 1,
+      prompt: "Map the plant life stages to approximate ages, and each biological transition to the elapsed time it represents.",
+      categoryA: {
+        name: "𝒞: Plant lifecycle",
+        objects: ["Seed", "Seedling", "Mature plant"],
+        morphisms: [
+          { from: "Seed", to: "Seedling", label: "germinate" },
+          { from: "Seedling", to: "Mature plant", label: "grow" }
+        ]
+      },
+      categoryB: {
+        name: "𝒟: Age categories",
+        objects: ["Day 0", "Week 1", "Year 1+"],
+        morphisms: [
+          { from: "Day 0", to: "Week 1", label: "days pass" },
+          { from: "Week 1", to: "Year 1+", label: "months pass" }
+        ]
+      },
+      correctMapping: {
+        objects: { "Seed": "Day 0", "Seedling": "Week 1", "Mature plant": "Year 1+" },
+        morphisms: { "germinate": "days pass", "grow": "months pass" }
+      },
+      explanation: "The time functor maps each life stage to the approximate age at which it occurs, and each transition to the time interval it spans. Composition is preserved: germinate ∘ grow = seed → mature plant maps to days pass ∘ months pass = day 0 → year 1+."
+    },
+    {
+      id: "fu-10",
+      type: "functor_match",
+      domain: "logic",
+      difficulty: 2,
+      prompt: "Map the formal proof steps to the arithmetic operations they correspond to.",
+      categoryA: {
+        name: "𝒞: Proof steps",
+        objects: ["Premise P", "P and Q", "P and Q and R"],
+        morphisms: [
+          { from: "Premise P", to: "P and Q", label: "introduce Q (conjunction)" },
+          { from: "P and Q", to: "P and Q and R", label: "introduce R (conjunction)" }
+        ]
+      },
+      categoryB: {
+        name: "𝒟: Numbers (conjunct count)",
+        objects: ["1", "2", "3"],
+        morphisms: [
+          { from: "1", to: "2", label: "+1" },
+          { from: "2", to: "3", label: "+1" }
+        ]
+      },
+      correctMapping: {
+        objects: { "Premise P": "1", "P and Q": "2", "P and Q and R": "3" },
+        morphisms: { "introduce Q (conjunction)": "+1", "introduce R (conjunction)": "+1" }
+      },
+      explanation: "The 'size' functor maps each proposition to the number of conjuncts it contains, and each conjunction introduction step to the operation +1. Composition is preserved: introducing Q then R = going from 1 conjunct to 3, which equals +1 then +1 = +2."
+    },
+    {
+      id: "fu-11",
+      type: "functor_match",
+      domain: "cooking",
+      difficulty: 2,
+      prompt: "Map each egg cooking stage to its visual appearance, and each operation to what changes in the yolk.",
+      categoryA: {
+        name: "𝒞: Egg cooking states",
+        objects: ["Raw egg", "Soft-boiled egg", "Hard-boiled egg"],
+        morphisms: [
+          { from: "Raw egg", to: "Soft-boiled egg", label: "boil 6 minutes" },
+          { from: "Soft-boiled egg", to: "Hard-boiled egg", label: "boil 6 more minutes" }
+        ]
+      },
+      categoryB: {
+        name: "𝒟: Yolk textures",
+        objects: ["Liquid", "Jammy", "Firm"],
+        morphisms: [
+          { from: "Liquid", to: "Jammy", label: "partially set" },
+          { from: "Jammy", to: "Firm", label: "fully set" }
+        ]
+      },
+      correctMapping: {
+        objects: { "Raw egg": "Liquid", "Soft-boiled egg": "Jammy", "Hard-boiled egg": "Firm" },
+        morphisms: { "boil 6 minutes": "partially set", "boil 6 more minutes": "fully set" }
+      },
+      explanation: "The texture functor maps each egg cooking stage to the state of its yolk. Boiling for 6 minutes partially coagulates the yolk proteins (liquid → jammy), and another 6 minutes fully coagulates them (jammy → firm). Composition is preserved and irreversible — you cannot un-set proteins."
+    },
+    {
+      id: "fu-12",
+      type: "functor_match",
+      domain: "mixed",
+      difficulty: 2,
+      prompt: "Map the musical key relationships to their arithmetic counterparts in clock arithmetic (ℤ₁₂).",
+      categoryA: {
+        name: "𝒞: Musical keys",
+        objects: ["C major", "G major", "D major"],
+        morphisms: [
+          { from: "C major", to: "G major", label: "up a perfect fifth" },
+          { from: "G major", to: "D major", label: "up a perfect fifth" }
+        ]
+      },
+      categoryB: {
+        name: "𝒟: Integers mod 12",
+        objects: ["0", "7", "2"],
+        morphisms: [
+          { from: "0", to: "7", label: "+7 (mod 12)" },
+          { from: "7", to: "2", label: "+7 (mod 12)" }
+        ]
+      },
+      correctMapping: {
+        objects: { "C major": "0", "G major": "7", "D major": "2" },
+        morphisms: { "up a perfect fifth": "+7 (mod 12)" }
+      },
+      explanation: "Each musical key corresponds to a pitch class (C=0, G=7, D=2) in the 12-tone system. Moving up a perfect fifth always adds 7 semitones, modulo 12. So G major (0+7=7) and D major (7+7=14 mod 12 = 2). Composition is preserved: two fifths up from C = D, which matches +7 twice in ℤ₁₂."
+    },
+    {
+      id: "fu-13",
+      type: "functor_match",
+      domain: "logic",
+      difficulty: 3,
+      prompt: "Map the parity category to the arithmetic category. Each object is a parity class; morphisms are transformations.",
+      categoryA: {
+        name: "𝒞: Parity (even/odd)",
+        objects: ["Even", "Odd"],
+        morphisms: [
+          { from: "Even", to: "Odd", label: "add 1" },
+          { from: "Odd", to: "Even", label: "add 1" }
+        ]
+      },
+      categoryB: {
+        name: "𝒟: Integers mod 2",
+        objects: ["0", "1"],
+        morphisms: [
+          { from: "0", to: "1", label: "+1 (mod 2)" },
+          { from: "1", to: "0", label: "+1 (mod 2)" }
+        ]
+      },
+      correctMapping: {
+        objects: { "Even": "0", "Odd": "1" },
+        morphisms: { "add 1": "+1 (mod 2)" }
+      },
+      explanation: "Even numbers correspond to 0 mod 2, odd numbers to 1 mod 2. Adding 1 to an even number gives an odd number, and vice versa — matching +1 in ℤ₂. Both 'add 1' morphisms (even→odd and odd→even) share the same label, and both map to '+1 (mod 2).' This functor is an isomorphism of categories."
+    },
+    {
+      id: "fu-14",
+      type: "functor_match",
+      domain: "cooking",
+      difficulty: 2,
+      prompt: "Map the wine production stages to the sugar content category.",
+      categoryA: {
+        name: "𝒞: Wine production",
+        objects: ["Fresh grapes", "Crushed must", "Fermented wine"],
+        morphisms: [
+          { from: "Fresh grapes", to: "Crushed must", label: "crush and press" },
+          { from: "Crushed must", to: "Fermented wine", label: "ferment with yeast" }
+        ]
+      },
+      categoryB: {
+        name: "𝒟: Sugar levels",
+        objects: ["High sugar (15–25% Brix)", "Medium sugar (10–15% Brix)", "Low sugar (<1% Brix)"],
+        morphisms: [
+          { from: "High sugar (15–25% Brix)", to: "Medium sugar (10–15% Brix)", label: "release and dilute" },
+          { from: "Medium sugar (10–15% Brix)", to: "Low sugar (<1% Brix)", label: "consume sugars" }
+        ]
+      },
+      correctMapping: {
+        objects: {
+          "Fresh grapes": "High sugar (15–25% Brix)",
+          "Crushed must": "Medium sugar (10–15% Brix)",
+          "Fermented wine": "Low sugar (<1% Brix)"
+        },
+        morphisms: { "crush and press": "release and dilute", "ferment with yeast": "consume sugars" }
+      },
+      explanation: "The sugar functor maps each wine stage to its sugar concentration. Crushing dilutes the concentrated grape sugar into the must; fermentation consumes the remaining sugar as yeast metabolize it into ethanol. Composition is preserved: crush then ferment = fresh grapes all the way to dry wine."
+    },
+    {
+      id: "fu-15",
+      type: "functor_match",
+      domain: "mixed",
+      difficulty: 1,
+      prompt: "Map each day to a number, and each 'next day' step to its arithmetic counterpart.",
+      categoryA: {
+        name: "𝒞: Days of the week",
+        objects: ["Monday", "Tuesday", "Wednesday"],
+        morphisms: [
+          { from: "Monday", to: "Tuesday", label: "next day" },
+          { from: "Tuesday", to: "Wednesday", label: "next day" }
+        ]
+      },
+      categoryB: {
+        name: "𝒟: Numbers",
+        objects: ["1", "2", "3"],
+        morphisms: [
+          { from: "1", to: "2", label: "+1" },
+          { from: "2", to: "3", label: "+1" }
+        ]
+      },
+      correctMapping: {
+        objects: { "Monday": "1", "Tuesday": "2", "Wednesday": "3" },
+        morphisms: { "next day": "+1" }
+      },
+      explanation: "The simplest possible functor: map each day to its ordinal number and 'next day' to +1. Composition is preserved: next day twice from Monday = Wednesday, and +1 twice from 1 = 3. This illustrates that any ordered sequence has a natural functor to the natural numbers."
     },
   ],
 
@@ -1586,6 +2324,301 @@ const challenges = {
         direction: "AtoB",
         isIso: false,
         explanation: "This is a case where the proposed functor FAILS. The org chart category has clean composition (A reports to B, B reports to C, therefore A is under C). But real communication doesn't respect this — people Slack their CEO directly. The failure of the functor is itself informative: it tells you the org chart is an incomplete model of how the company actually operates. Category theory is useful even when the mapping breaks."
+      }
+    },
+    {
+      id: "fc-09",
+      type: "free_construction",
+      domain: "cooking",
+      difficulty: 1,
+      objectA: "Flour",
+      objectB: "Bread",
+      steps: [
+        {
+          question: "In a category of cooking operations, does a direct morphism exist from flour to bread?",
+          options: ["Yes — just bake the flour", "No — bread requires additional objects (water, yeast, salt)", "It depends on the recipe"],
+          answer: "No — bread requires additional objects (water, yeast, salt)"
+        },
+        {
+          question: "What kind of categorical structure is 'flour + water + yeast → bread'?",
+          options: [
+            "A morphism from a product object (flour × water × yeast) to bread",
+            "A functor between categories",
+            "A morphism from flour alone to bread"
+          ],
+          answer: "A morphism from a product object (flour × water × yeast) to bread"
+        },
+        {
+          question: "Is the morphism from (flour × water × yeast) to bread an isomorphism?",
+          options: [
+            "Yes — you can un-bake bread back to ingredients",
+            "No — baking is irreversible; ingredients cannot be recovered from the bread"
+          ],
+          answer: "No — baking is irreversible; ingredients cannot be recovered from the bread"
+        }
+      ],
+      authorAnalysis: {
+        category: "Cooking operations",
+        morphism: "No direct morphism from flour alone; the source must be the product flour × water × yeast",
+        direction: "product → bread",
+        isIso: false,
+        explanation: "Flour alone is not sufficient as a source object for the bread morphism — this is a common categorical mistake of specifying the wrong source. The real source is a product object. Product types appear constantly in category theory: A × B represents 'an A and a B together.' The bread-making morphism is a perfect example."
+      }
+    },
+    {
+      id: "fc-10",
+      type: "free_construction",
+      domain: "logic",
+      difficulty: 2,
+      objectA: "A question",
+      objectB: "An answer",
+      steps: [
+        {
+          question: "In a category of epistemic states, what is the morphism from a question to an answer?",
+          options: [
+            "Inquiry — the process of gathering evidence and reasoning to a conclusion",
+            "Guessing — arbitrarily selecting a response",
+            "There is no morphism; questions and answers are unrelated"
+          ],
+          answer: "Inquiry — the process of gathering evidence and reasoning to a conclusion"
+        },
+        {
+          question: "Can multiple morphisms exist between the same question and answer?",
+          options: [
+            "Yes — many different inquiry methods can reach the same answer (experiment, deduction, testimony)",
+            "No — there is only one valid inquiry method per question"
+          ],
+          answer: "Yes — many different inquiry methods can reach the same answer (experiment, deduction, testimony)"
+        },
+        {
+          question: "Is this an isomorphism?",
+          options: [
+            "Yes — an answer determines its question",
+            "No — the same answer can answer many different questions, so you cannot recover the question from the answer"
+          ],
+          answer: "No — the same answer can answer many different questions, so you cannot recover the question from the answer"
+        }
+      ],
+      authorAnalysis: {
+        category: "Epistemic inquiry",
+        morphism: "Inquiry — any valid process that derives an answer from a question",
+        direction: "AtoB",
+        isIso: false,
+        explanation: "Many different morphisms (inquiry methods) can connect the same question to the same answer. The category is rich: parallel morphisms show that truth is multiply accessible. And the morphism is not invertible — knowing '42' is the answer does not tell you which question was asked."
+      }
+    },
+    {
+      id: "fc-11",
+      type: "free_construction",
+      domain: "family",
+      difficulty: 1,
+      objectA: "Grandparent",
+      objectB: "Grandchild",
+      steps: [
+        {
+          question: "In a category of kinship relations, is there a direct morphism from grandparent to grandchild?",
+          options: [
+            "Yes — 'is the grandparent of' is a direct morphism",
+            "No — the relationship must be mediated by a parent",
+            "Only if they live in the same house"
+          ],
+          answer: "Yes — 'is the grandparent of' is a direct morphism"
+        },
+        {
+          question: "Is this morphism the composition of simpler morphisms?",
+          options: [
+            "Yes — 'is grandparent of' = 'is parent of' ∘ 'is parent of'",
+            "No — 'is grandparent of' is a primitive relation that cannot be decomposed",
+            "Only in small families"
+          ],
+          answer: "Yes — 'is grandparent of' = 'is parent of' ∘ 'is parent of'"
+        },
+        {
+          question: "Is 'is the grandparent of' an isomorphism?",
+          options: [
+            "Yes — the grandchild is also the grandchild of the grandparent",
+            "No — 'is the grandchild of' is a different morphism, not an inverse; the relationship is directed"
+          ],
+          answer: "No — 'is the grandchild of' is a different morphism, not an inverse; the relationship is directed"
+        }
+      ],
+      authorAnalysis: {
+        category: "Kinship relations",
+        morphism: "'is the grandparent of' — a morphism that is itself the composition of two 'is parent of' morphisms",
+        direction: "AtoB",
+        isIso: false,
+        explanation: "This illustrates that morphisms can be composed: grandparent-of = parent-of ∘ parent-of. The composed morphism exists as a direct arrow in the category, even though it decomposes into two steps. The reverse ('is grandchild of') exists but is a different morphism, not an inverse."
+      }
+    },
+    {
+      id: "fc-12",
+      type: "free_construction",
+      domain: "cooking",
+      difficulty: 2,
+      objectA: "A menu",
+      objectB: "A meal",
+      steps: [
+        {
+          question: "In a category of restaurant operations, what is the morphism from menu to meal?",
+          options: [
+            "An order — a customer selects items and cooks prepare them",
+            "The menu is a morphism, not an object",
+            "No morphism exists; menus and meals are in different categories"
+          ],
+          answer: "An order — a customer selects items and cooks prepare them"
+        },
+        {
+          question: "What role does the menu play categorically?",
+          options: [
+            "The menu is a set of available morphisms from 'raw ingredients' to 'prepared dishes'",
+            "The menu is a functor",
+            "The menu is an identity morphism"
+          ],
+          answer: "The menu is a set of available morphisms from 'raw ingredients' to 'prepared dishes'"
+        },
+        {
+          question: "Can the same menu produce different meals?",
+          options: [
+            "Yes — different orders from the same menu yield different meals (different morphisms, same source)",
+            "No — each menu has exactly one corresponding meal"
+          ],
+          answer: "Yes — different orders from the same menu yield different meals (different morphisms, same source)"
+        }
+      ],
+      authorAnalysis: {
+        category: "Restaurant operations",
+        morphism: "An order — selects and instantiates a morphism from the menu's set of available operations",
+        direction: "AtoB",
+        isIso: false,
+        explanation: "A menu is a specification of available morphisms, not itself a morphism. The act of ordering selects and executes one. Different orders from the same menu are parallel morphisms from the same source (raw ingredients) to different targets (different dishes). This is a case where the 'source' is really a product of ingredients."
+      }
+    },
+    {
+      id: "fc-13",
+      type: "free_construction",
+      domain: "family",
+      difficulty: 2,
+      objectA: "Sibling A",
+      objectB: "Sibling B",
+      steps: [
+        {
+          question: "In a category of kinship relations, is there a morphism from Sibling A to Sibling B?",
+          options: [
+            "Yes — 'is the sibling of' is a morphism",
+            "No — siblings are not connected by morphisms, only by shared parents",
+            "Only if they are twins"
+          ],
+          answer: "Yes — 'is the sibling of' is a morphism"
+        },
+        {
+          question: "Is the sibling morphism symmetric (does a reverse also exist)?",
+          options: [
+            "Yes — if A is a sibling of B, then B is a sibling of A",
+            "No — sibling relationships are directional"
+          ],
+          answer: "Yes — if A is a sibling of B, then B is a sibling of A"
+        },
+        {
+          question: "Does symmetry make 'is the sibling of' an isomorphism?",
+          options: [
+            "Yes — the morphisms compose to identity: going A→B→A returns you to A",
+            "No — in category theory, isomorphism requires that f ∘ g = id and g ∘ f = id, which holds here in a poset sense but not in a strict structural sense"
+          ],
+          answer: "Yes — the morphisms compose to identity: going A→B→A returns you to A"
+        }
+      ],
+      authorAnalysis: {
+        category: "Kinship relations (as a preorder/graph)",
+        morphism: "'is the sibling of' — a symmetric morphism with a natural inverse",
+        direction: "both",
+        isIso: true,
+        explanation: "In the category of kinship, 'is the sibling of' is symmetric: A is sibling of B iff B is sibling of A. Composing A→B with B→A gives A→A, which is the identity. This makes it an isomorphism. Compare with 'is the parent of,' which is not symmetric — a clean example of how different kinship morphisms have different categorical properties."
+      }
+    },
+    {
+      id: "fc-14",
+      type: "free_construction",
+      domain: "logic",
+      difficulty: 3,
+      objectA: "A set of axioms",
+      objectB: "A theorem",
+      steps: [
+        {
+          question: "In a category of formal proofs, what is the morphism from axioms to theorem?",
+          options: [
+            "A proof — a finite sequence of inference steps that derives the theorem from the axioms",
+            "The axioms are morphisms, not objects",
+            "No morphism exists if the theorem is unprovable"
+          ],
+          answer: "A proof — a finite sequence of inference steps that derives the theorem from the axioms"
+        },
+        {
+          question: "Can multiple morphisms exist between the same axioms and the same theorem?",
+          options: [
+            "Yes — many different proofs can prove the same theorem from the same axioms",
+            "No — each theorem has exactly one proof"
+          ],
+          answer: "Yes — many different proofs can prove the same theorem from the same axioms"
+        },
+        {
+          question: "What does it mean categorically when no morphism exists from axioms to a statement?",
+          options: [
+            "The statement is unprovable from those axioms — it is independent of the axiom system",
+            "The axioms are inconsistent",
+            "The statement is false"
+          ],
+          answer: "The statement is unprovable from those axioms — it is independent of the axiom system"
+        }
+      ],
+      authorAnalysis: {
+        category: "Formal proof theory",
+        morphism: "A proof — a morphism in the category of propositions under provability",
+        direction: "AtoB",
+        isIso: false,
+        explanation: "This is the Curry-Howard correspondence in its simplest form: proofs are morphisms. Multiple proofs of the same theorem are parallel morphisms. Gödel's incompleteness theorem says some morphisms simply do not exist in sufficiently powerful axiom systems — some statements are true but unprovable, i.e., there is no morphism. This is one of the deepest facts about the category of proofs."
+      }
+    },
+    {
+      id: "fc-15",
+      type: "free_construction",
+      domain: "mixed",
+      difficulty: 2,
+      objectA: "A lock",
+      objectB: "An open door",
+      steps: [
+        {
+          question: "In a category of access control states, what is the morphism from lock to open door?",
+          options: [
+            "The correct key — only the right key unlocks the door",
+            "Any physical force — the door can be forced open",
+            "There is no morphism; locks and doors are different object types"
+          ],
+          answer: "The correct key — only the right key unlocks the door"
+        },
+        {
+          question: "Is this an isomorphism?",
+          options: [
+            "Yes — you can lock the door again (re-lock = reverse morphism)",
+            "No — once open, the door stays open permanently"
+          ],
+          answer: "Yes — you can lock the door again (re-lock = reverse morphism)"
+        },
+        {
+          question: "What makes the key categorically special?",
+          options: [
+            "The key is itself a morphism — it encodes the specific transformation needed to change the state",
+            "The key is an object that happens to be carried by a person",
+            "The key is a functor between security categories"
+          ],
+          answer: "The key is itself a morphism — it encodes the specific transformation needed to change the state"
+        }
+      ],
+      authorAnalysis: {
+        category: "Access control states",
+        morphism: "The correct key — a morphism encoding the unique transformation that unlocks this particular lock",
+        direction: "AtoB",
+        isIso: true,
+        explanation: "Lock → open door is an isomorphism: the key unlocks, and re-locking with the same key reverses it. The key is both an object (a physical thing) and a morphism (a transformation specification) — this dual role is common in category theory. In cryptography, keys are formally modeled as morphisms in categories of encrypted states."
       }
     },
   ],

@@ -44,8 +44,51 @@ body {
 .stats {
   font-size: 14px;
   color: #666;
-  margin-top: 8px;
   font-family: 'IBM Plex Mono', monospace;
+}
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.streak-badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  background: #fef3c7;
+  color: #92400e;
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+/* ---- KEYBOARD HINTS ---- */
+
+.key-hint-inline {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: #bbb;
+  background: #f5f5f3;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  padding: 0 4px;
+  margin-right: 6px;
+  line-height: 1.6;
+  vertical-align: middle;
+}
+
+.option-btn .key-hint-inline,
+.error-arrow .key-hint-inline {
+  opacity: 0.7;
+}
+
+.submit-btn .key-hint-inline {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.7);
 }
 
 /* ---- TYPE SELECTION GRID ---- */
@@ -319,10 +362,44 @@ body {
 
 .challenge-nav {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin-top: 32px;
   padding-top: 20px;
   border-top: 1px solid #eee;
+}
+
+.mark-known-btn {
+  padding: 8px 14px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  background: none;
+  border: 1.5px dashed #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #bbb;
+  transition: border-color 0.12s, color 0.12s;
+}
+
+.mark-known-btn:hover {
+  border-color: #86efac;
+  color: #166534;
+}
+
+.reset-btn {
+  background: none;
+  border: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: #ddd;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 16px;
+  display: block;
+}
+
+.reset-btn:hover {
+  color: #ef4444;
 }
 
 /* ---- FEEDBACK ---- */

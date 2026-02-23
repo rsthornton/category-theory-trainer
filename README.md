@@ -18,7 +18,7 @@ src/
 ├── App.jsx                    # Main shell, routing, state
 ├── main.jsx                   # Entry point
 ├── data/
-│   └── challenges.js          # THE CONTENT DATABASE (~200 challenges)
+│   └── challenges.js          # THE CONTENT DATABASE (115 challenges)
 ├── components/
 │   ├── Classify.jsx           # Type 1: Sort objects vs morphisms
 │   ├── Validate.jsx           # Type 2: Is this arrow valid?
@@ -83,12 +83,12 @@ Priority areas for improvement:
 
 ### High Impact
 - **Diagram rendering**: All 8 challenge types now render SVG diagrams. Compose (n=2) uses a proper commutative right triangle. FunctorMatch uses a clean two-column layout without literal boxes. Arrowheads use the tikz-cd stealth style. See `ROADMAP.md` for further diagram improvements including CT library research (Catlab.jl, discopy, quiver).
-- **Scoring/streaks**: Add a streak counter, accuracy tracking per challenge type, and persistence via localStorage.
-- **Content volume**: Generate more challenges. Target: 15+ per type per domain.
+- ✓ ~~**Scoring/streaks**: Add a streak counter, accuracy tracking per challenge type, and persistence via localStorage.~~
+- ✓ ~~**Content volume**: Generate more challenges. Target: 15+ per type per domain.~~
 
 ### Medium Impact
 - **Animations**: Diagram elements appearing incrementally as you answer correctly.
-- **Shuffle quality**: Current shuffle is basic. Could weight by difficulty, prioritize unseen challenges, or space-repetition.
+- ✓ ~~**Shuffle quality**: Current shuffle is basic. Could weight by difficulty, prioritize unseen challenges, or space-repetition.~~
 - **Mobile layout**: Responsive but could be more touch-friendly.
 
 ### Future (v2)

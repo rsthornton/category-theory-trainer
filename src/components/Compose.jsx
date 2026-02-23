@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Compose({ challenge, onComplete, onShowDiagram }) {
   const [selected, setSelected] = useState(null)
@@ -18,6 +18,18 @@ export default function Compose({ challenge, onComplete, onShowDiagram }) {
       })
     }
   }
+
+  useEffect(() => {
+    if (submitted) return
+    const handler = (e) => {
+      if (e.ctrlKey || e.metaKey || e.altKey) return
+      const n = parseInt(e.key)
+      if (n >= 1 && n <= challenge.options.length) setSelected(n - 1)
+      if (e.key === 'Enter' && selected !== null) handleSubmit()
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [submitted, selected]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const isCorrect = submitted && challenge.options[selected] === challenge.answer
   const correctIndex = challenge.options.indexOf(challenge.answer)
@@ -65,14 +77,14 @@ export default function Compose({ challenge, onComplete, onShowDiagram }) {
             onClick={() => !submitted && setSelected(i)}
             disabled={submitted}
           >
-            {opt}
+            <span className="key-hint-inline">{i + 1}</span> {opt}
           </button>
         ))}
       </div>
 
       {!submitted && (
         <button onClick={handleSubmit} disabled={selected === null} className="submit-btn">
-          Check Answer
+          Check Answer <span className="key-hint-inline">↵</span>
         </button>
       )}
 
